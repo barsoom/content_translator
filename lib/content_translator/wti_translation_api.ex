@@ -1,0 +1,2 @@
+defmodule ContentTranslator.WtiTranslationApi do
+end
