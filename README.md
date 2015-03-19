@@ -6,7 +6,7 @@
 
 A webservice to translate content using WebTranslateIt and keep track of mappings to local ids.
 
-This app is designed with reliablity in mind. It will retry calls both to the client app and to the WTI service as needed.
+This app is designed with reliability in mind. It will retry calls both to the client app and to the WTI service as needed.
 
 This app follows the model of [gridlook](https://github.com/barsoom/gridlook) to keep things simple: one deployment per client project.
 
