@@ -8,6 +8,8 @@ This app is designed with reliablity in mind. It will retry calls both to the cl
 
 ### Sending content changes to this app
 
+Content is sent to this app by HTTP calls. Create and update is POST, destroy is DELETE.
+
 These calls can be made multiple times without causing any problems, so design your app to continue retrying the requests until you get a 200 response (e.g. instead of a timeout).
 
     POST   /api/texts token=token-for-my-app identifier="help_item_25" name="question" value="What is elixir?" locale=en
