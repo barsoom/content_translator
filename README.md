@@ -60,7 +60,7 @@ See the configuration section for how to setup webhook URLs.
 
 - [x] Write configuration section docs
 - [x] Get CI and deploy working
-- [ ] Get automatic deploy working
+- [x] Get automatic deploy working
 - [ ] Set up a way to get WTI webhooks to the dev box
 - [ ] handle text update and delete
 - [ ] handle wti webhooks
