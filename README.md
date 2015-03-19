@@ -6,16 +6,18 @@ A webservice to translate content using WebTranslateIt and keep track of mapping
 
 This app is designed with reliablity in mind. It will retry calls both to the client app and to the WTI service as needed.
 
+This app follows the model of [gridlook](https://github.com/barsoom/gridlook) to keep things simple: one deployment per client project.
+
 ### Sending content changes to this app
 
 Content is sent to this app by HTTP calls. Create and update is POST, destroy is DELETE.
 
 These calls can be made multiple times without causing any problems, so design your app to continue retrying the requests until you get a 200 response (e.g. instead of a timeout).
 
-    POST   /api/texts token=token-for-my-app identifier="help_item_25" name="question" value="What is elixir?" locale=en
-    DELETE /api/texts token=token-for-my-app identifier="help_item_25"
+    POST   /api/texts token=authtoken identifier="help_item_25" name="question" value="What is elixir?" locale=en
+    DELETE /api/texts token=authtoken identifier="help_item_25"
 
-See the configuration section for how to setup tokens.
+See the configuration section for how to setup the token.
 
 ### Receiving changes from this app
 
@@ -32,9 +34,22 @@ The message looks like:
 
 See the configuration section for how to setup webhook URLs.
 
-## Configuration
+## Configuration and deployment on heroku
 
-TODO
+    heroku apps:create some-content-translator --region eu --buildpack https://github.com/HashNuke/heroku-buildpack-elixir.git
+    heroku config:set MIX_ENV=prod
+    heroku config:set HOSTNAME=some-content-translator.herokuapp.com
+
+    # no persistance yet, but soon, maybe redis
+    #heroku addons:add rediscloud:25
+
+    # NOTE: If you add more config variables, then also list them in elixir_buildpack.config
+    heroku config:set SECRET_KEY_BASE=$(elixir -e "IO.puts :crypto.strong_rand_bytes(64) |> Base.encode64")
+    heroku config:set AUTH_TOKEN=$(elixir -e "IO.puts Regex.replace(~r/[^a-zA-Z0-9]/, (:crypto.strong_rand_bytes(64) |> Base.encode64), \"\")")
+    heroku config:set CLIENT_APP_WEBHOOK_URL=""https://example.com/api/somewhere?your_auth_token=123"
+    heroku config:set WTI_PROJECT_ID=123
+
+    git push heroku master
 
 ## TODO
 
