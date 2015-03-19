@@ -1,5 +1,7 @@
 # NOTE: Readme Driven Development: May not do what the readme says yet.
 
+[![CircleCi](https://circleci.com/gh/barsoom/content_translator.svg?style=shield)](https://circleci.com/gh/barsoom/content\_translator)
+
 ## Content translator
 
 A webservice to translate content using WebTranslateIt and keep track of mappings to local ids.
