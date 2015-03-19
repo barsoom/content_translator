@@ -3,6 +3,7 @@ defmodule ContentTranslator.TextsApiController do
 
   alias ContentTranslator.TranslationService
 
+  plug :authenticate
   plug :action
 
   def create(conn, params) do
@@ -34,5 +35,17 @@ defmodule ContentTranslator.TextsApiController do
       { String.to_atom(key), value }
     end)
     |> Enum.into(%{})
+  end
+
+  defp authenticate(conn, _options) do
+    if conn.params["token"] == Config.auth_token do
+      conn
+    else
+      conn |> deny_and_halt
+    end
+  end
+
+  defp deny_and_halt(conn) do
+    conn |> send_resp(403, "Denied") |> halt
   end
 end

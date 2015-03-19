@@ -10,7 +10,7 @@ defmodule TextsApiTest do
   end
 
   test "creating a text" do
-    response = post "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en"
+    response = post "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "secret-token"
     assert response.status == 200
 
     when_the_translation_has_been_updated(fn ->
@@ -18,6 +18,11 @@ defmodule TextsApiTest do
         %{ key: "help_item_25_question", value: "What is elixir?", locale: "en", id: 1 }
       ]
     end)
+  end
+
+  test "creating a text with an invalid token fails" do
+    response = post "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "invalid-secret-token"
+    assert response.status == 403
   end
 
   #test "updating a text"

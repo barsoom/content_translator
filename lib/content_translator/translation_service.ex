@@ -4,8 +4,6 @@ defmodule ContentTranslator.TranslationService do
   end
 
   def update(caller, attributes, api \\ Config.translation_api) do
-    IO.inspect attributes
-
     identifier = attributes[:identifier]
     name = attributes[:name]
     value = attributes[:value]
