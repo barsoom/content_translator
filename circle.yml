@@ -15,4 +15,4 @@ deployment:
   production:
     branch: master
     commands:
-      - [ $HEROKU_APP_NAME1 ] && git push git@heroku.com:$HEROKU_APP_NAME1.git $CIRCLE_SHA1:master
+      - script/ci/deploy.sh
