@@ -45,7 +45,6 @@ See the configuration section for how to setup webhook URLs.
 
 0. Set up a source language
 0. Add languages you want to translate to
-0. Configure the webhook url to something like `https://your-app.herokuapp.com/api/wti_webhook?token=the-auth-token-for-this-app`
 
 ### Deploy this app to heroku
 
@@ -67,6 +66,7 @@ See the configuration section for how to setup webhook URLs.
 
 ### Configure your app and check that it works
 
+0. Configure the webhook url in WTI to something like `https://YOUR_APP_NAME.herokuapp.com/api/wti_webhook?token=the-auth-token-for-this-app`
 0. Configure the client app to sent content to this app
 0. Change something in your client app, see that it appears in WTI
 0. Translate something in WTI and see if the content is updated in your app
