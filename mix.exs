@@ -15,7 +15,7 @@ defmodule ContentTranslator.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [mod: {ContentTranslator, []},
-     applications: [:phoenix, :cowboy, :logger]]
+     applications: [:phoenix, :cowboy, :logger, :httpotion]]
   end
 
   # Specifies your project dependencies
