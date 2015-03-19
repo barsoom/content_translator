@@ -78,11 +78,12 @@ See the configuration section for how to setup webhook URLs.
 - [x] Write configuration section docs
 - [x] Get CI and deploy working
 - [x] Get automatic deploy working
-- [ ] Set up a way to get WTI webhooks to the dev box
-- [ ] handle text update and delete
+- [x] Set up a way to get WTI webhooks to the dev box
+- [ ] handle text update
 - [ ] handle wti webhooks
   - [ ] be able to parse the request
   - [ ] post to the client app
+- [ ] handle text delete
 - [ ] Authentication
 
 ### Reliable app
