@@ -17,7 +17,7 @@ Content is sent to this app by HTTP calls. Create and update is POST, destroy is
 These calls can be made multiple times without causing any problems, so design your app to continue retrying the requests until you get a 200 response (e.g. instead of a timeout).
 
     POST   /api/texts token=authtoken identifier="help_item_25" name="question" value="What is elixir?" locale=en
-    DELETE /api/texts token=authtoken identifier="help_item_25"
+    DELETE /api/texts token=authtoken identifier="help_item_25" name="question"
 
 See the configuration section for how to setup the token.
 
