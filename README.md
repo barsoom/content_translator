@@ -55,7 +55,8 @@ See the configuration section for how to setup webhook URLs.
 
 ### Minimal app
 
-- [ ] Write configuration section docs
+- [x] Write configuration section docs
+- [ ] Get CI and deploy working
 - [ ] handle text update and delete
 - [ ] handle wti webhooks
   - [ ] be able to parse the request
