@@ -36,7 +36,18 @@ The message looks like:
 
 See the configuration section for how to setup webhook URLs.
 
-## Configuration and deployment on heroku
+
+## Set up
+
+### Set up a project in WebTranslateIt
+
+Create a project and:
+
+0. Set up a source language
+0. Add languages you want to translate to
+0. Configure the webhook url to something like `https://your-app.herokuapp.com/api/wti_webhook?token=the-auth-token-for-this-app`
+
+### Deploy this app to heroku
 
     heroku apps:create some-content-translator --region eu --buildpack https://github.com/HashNuke/heroku-buildpack-elixir.git
     heroku config:set MIX_ENV=prod
@@ -53,6 +64,12 @@ See the configuration section for how to setup webhook URLs.
     heroku config:set WTI_PROJECT_TOKEN=token # must be the read-write token
 
     git push heroku master
+
+### Configure your app and check that it works
+
+0. Configure the client app to sent content to this app
+0. Change something in your client app, see that it appears in WTI
+0. Translate something in WTI and see if the content is updated in your app
 
 ## TODO
 
