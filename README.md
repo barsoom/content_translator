@@ -57,7 +57,9 @@ See the configuration section for how to setup webhook URLs.
 ### Minimal app
 
 - [x] Write configuration section docs
-- [ ] Get CI and deploy working
+- [x] Get CI and deploy working
+- [ ] Get automatic deploy working
+- [ ] Set up a way to get WTI webhooks to the dev box
 - [ ] handle text update and delete
 - [ ] handle wti webhooks
   - [ ] be able to parse the request
@@ -71,6 +73,10 @@ See the configuration section for how to setup webhook URLs.
   - [ ] be able to work though stored requests, e.g. background job, possibly boot up processes on app-boot, and otherwise just issue a process as needed when a request comes in.
   - [ ] be able to poll wti if this app has been during a webhook?
   - [ ] retry posting to the client app as the readme says
+
+### More
+
+- [ ] Show app status on internal dashboard
 
 ## Development
 
