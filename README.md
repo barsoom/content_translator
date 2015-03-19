@@ -41,7 +41,7 @@ See the configuration section for how to setup webhook URLs.
 
 ### Set up a project in WebTranslateIt
 
-Create a project and:
+[Create a project](https://webtranslateit.com/en/projects/new) and:
 
 0. Set up a source language
 0. Add languages you want to translate to
