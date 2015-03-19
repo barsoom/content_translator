@@ -1,6 +1,6 @@
 # NOTE: Readme Driven Development: May not do what the readme says yet.
 
-![CircleCi](https://circleci.com/gh/barsoom/content_translator.svg?style=shield)
+[CircleCi](https://circleci.com/gh/barsoom/content_translator)
 
 ## Content translator
 
