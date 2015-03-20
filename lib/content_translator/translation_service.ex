@@ -1,6 +1,27 @@
 defmodule ContentTranslator.TranslationService do
+  use GenServer
+
+  def start_link do
+    state = []
+    GenServer.start_link(__MODULE__, state, [ name: :translation_service ])
+  end
+
+  def handle_cast({ caller, attributes }, state) do
+    update(caller, attributes)
+    {:noreply, state}
+  end
+
   def update_in_background(attributes) do
-    spawn(ContentTranslator.TranslationService, :update, [ self, attributes ])
+    # This uses "cast" to make it async, but it will only process one
+    # at a time.
+
+    # Making parallel calls for the same string (one for each locale)
+    # won't work because of how the WTI API works. It assumes you know if
+    # a string is created or not.
+
+    # Handling different strings at once should work, but if you do that,
+    # limit the number of parallel calls to be nice to WTI.
+    GenServer.cast(:translation_service, { self, attributes })
   end
 
   def update(caller, attributes, api \\ Config.translation_api) do

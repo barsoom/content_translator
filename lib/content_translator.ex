@@ -11,10 +11,8 @@ defmodule ContentTranslator do
     Process.register(redis_client, :redis)
 
     children = [
-      # Start the endpoint when the application starts
       supervisor(ContentTranslator.Endpoint, []),
-      # Here you could define other workers and supervisors as children
-      # worker(ContentTranslator.Worker, [arg1, arg2, arg3]),
+      worker(ContentTranslator.TranslationService, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
