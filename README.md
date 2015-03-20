@@ -87,6 +87,7 @@ See the configuration section for how to setup webhook URLs.
   - [ ] be able to parse the request
   - [x] don't do anything when the webhook is a result of a update from this app
   - [ ] post to the client app
+- [ ] ensure all our texts work, next to debug: help_item_31, de
 - [ ] handle text delete
 - [x] Authentication
 
