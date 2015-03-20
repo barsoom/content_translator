@@ -51,7 +51,10 @@ defmodule ContentTranslator.WtiTranslationApi do
   end
 
   defp verify_response_code(response, code) do
-    ^code = response.status_code
+    if response.status_code != code do
+      raise "Unexpected response: #{inspect(response)}"
+    end
+
     response
   end
 
