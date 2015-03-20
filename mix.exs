@@ -25,6 +25,7 @@ defmodule ContentTranslator.Mixfile do
     [
      {:phoenix, "~> 0.10.0"},
      {:cowboy, "~> 1.0"},
+     {:exredis, ">= 0.1.1"},
 
      # a http client and it's and dependency
      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.1"},

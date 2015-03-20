@@ -18,6 +18,9 @@ defmodule TextsApiTest do
     assert FakeTranslationApi.texts == [
       %{ key: "help_item_25_question", value: "What is elixir?", locale: "en", id: 1 }
     ]
+
+    # Needed later on to map the other way around
+    assert TranslationMapping.identifier_and_name(1) == [ "help_item_25", "question" ]
   end
 
   test "creating a text with an invalid token fails" do

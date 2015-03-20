@@ -5,11 +5,13 @@ defmodule ContentTranslator.TranslationService do
 
   def update(caller, attributes, api \\ Config.translation_api) do
     identifier = attributes[:identifier]
-    name = attributes[:name]
-    value = attributes[:value]
     locale = attributes[:locale]
+    value = attributes[:value]
+    name = attributes[:name]
+    key = "#{identifier}_#{name}"
 
-    api.create("#{identifier}_#{name}", value, locale)
+    api.create(key, value, locale)
+    |> TranslationMapping.store(identifier, name)
 
     send caller, :translation_updated
   end

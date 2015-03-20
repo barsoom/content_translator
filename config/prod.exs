@@ -5,7 +5,8 @@ config :content_translator, ContentTranslator.Endpoint,
   http: [port: System.get_env("PORT")],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   translation_api: ContentTranslator.WtiTranslationApi,
-  auth_token: System.get_env("AUTH_TOKEN")
+  auth_token: System.get_env("AUTH_TOKEN"),
+  redis_connection_string: System.get_env("REDISCLOUD_URL")
 
 # ## SSL Support
 #

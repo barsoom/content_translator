@@ -52,8 +52,7 @@ See the configuration section for how to setup webhook URLs.
     heroku config:set MIX_ENV=prod
     heroku config:set HOSTNAME=some-content-translator.herokuapp.com
 
-    # no persistance yet, but soon, maybe redis
-    #heroku addons:add rediscloud:25
+    heroku addons:add rediscloud:25
 
     # NOTE: If you add more config variables, then also list them in elixir_buildpack.config
     heroku config:set SECRET_KEY_BASE=$(elixir -e "IO.puts :crypto.strong_rand_bytes(64) |> Base.encode64")

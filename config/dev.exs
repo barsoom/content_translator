@@ -5,7 +5,8 @@ config :content_translator, ContentTranslator.Endpoint,
   debug_errors: true,
   cache_static_lookup: false,
   translation_api: ContentTranslator.WtiTranslationApi,
-  auth_token: "secret-token"
+  auth_token: "secret-token",
+  redis_connection_string: "redis://localhost:6379/0"
 
 # Enables code reloading for development
 config :phoenix, :code_reloader, true
