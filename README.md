@@ -1,5 +1,7 @@
 # NOTE: Readme Driven Development: May not do what the readme says yet.
 
+**Status**: We are sending content to WTI using this tool from one production system. The sync back isn't done yet though.
+
 [CircleCi](https://circleci.com/gh/barsoom/content_translator)
 
 ## Content translator
