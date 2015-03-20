@@ -102,6 +102,7 @@ See the configuration section for how to setup webhook URLs.
 
 ### More
 
+- [ ] Refactor WtiTranslationApi. The request parts could probably live elsewhere.
 - [ ] Screenshots of WTI in readme, diff handling, etc
 - [ ] Show app status on internal dashboard
 - [ ] Open source generic parts of the ruby client
