@@ -78,9 +78,9 @@ See the configuration section for how to setup webhook URLs.
 - [x] Get CI and deploy working
 - [x] Get automatic deploy working
 - [x] Set up a way to get WTI webhooks to the dev box
-- [ ] handle text update
+- [x] handle text update
   - [x] Set up client app in dev to post content to this app
-  - [ ] Figure out how to call the WTI API in elixir
+  - [x] Figure out how to call the WTI API in elixir
   - [ ] Don't push anything to WTI that hasn't changed
 - [ ] handle wti webhooks
   - [ ] be able to parse the request
