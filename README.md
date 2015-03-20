@@ -83,7 +83,6 @@ See the configuration section for how to setup webhook URLs.
 - [x] handle text update
   - [x] Set up client app in dev to post content to this app
   - [x] Figure out how to call the WTI API in elixir
-  - [ ] Don't push anything to WTI that hasn't changed
 - [ ] handle wti webhooks
   - [ ] auth
   - [ ] consider removing redis, if the key name could be reliable enough, maybe `: ` between indentifier and name, like `help_item_31: question`. in that case, refuse input of ":" in either field
@@ -106,6 +105,7 @@ See the configuration section for how to setup webhook URLs.
 - [ ] Screenshots of WTI in readme, diff handling, etc
 - [ ] Show app status on internal dashboard
 - [ ] Open source generic parts of the ruby client
+- [ ] Don't push anything to WTI that hasn't changed (but if this app does not keep any state that could be hard, could leave that up to the client app)
 
 ## Development
 
