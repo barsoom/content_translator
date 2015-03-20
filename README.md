@@ -85,6 +85,7 @@ See the configuration section for how to setup webhook URLs.
   - [x] Figure out how to call the WTI API in elixir
   - [ ] Don't push anything to WTI that hasn't changed
 - [ ] handle wti webhooks
+  - [ ] auth
   - [ ] be able to parse the request
   - [x] don't do anything when the webhook is a result of a update from this app
   - [ ] post to the client app
