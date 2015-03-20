@@ -38,7 +38,6 @@ The message looks like:
 
 See the configuration section for how to setup webhook URLs.
 
-
 ## Set up
 
 ### Set up a project in WebTranslateIt
