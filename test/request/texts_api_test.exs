@@ -16,11 +16,8 @@ defmodule TextsApiTest do
     wait_for_the_translation_to_become_updated
 
     assert FakeTranslationApi.texts == [
-      %{ key: "help_item_25_question", value: "What is elixir?", locale: "en", id: 1 }
+      %{ key: "help_item_25: question", value: "What is elixir?", locale: "en", id: 1 }
     ]
-
-    # Needed later on to map the other way around
-    assert TranslationMapping.identifier_and_name(1) == [ "help_item_25", "question" ]
   end
 
   test "creating a text with an invalid token fails" do
@@ -48,9 +45,5 @@ defmodule TextsApiTest do
   defp post(url, params) do
     conn(:post, url, params)
     |> ContentTranslator.Router.call(ContentTranslator.Router.init([]))
-  end
-
-  defp p(thing) do
-    IO.inspect(thing)
   end
 end

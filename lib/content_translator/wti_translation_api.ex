@@ -19,8 +19,6 @@ defmodule ContentTranslator.WtiTranslationApi do
 
     post("/strings/#{string_id}/locales/#{locale}/translations", %{ text: text })
     |> verify_response_code(202) # Accepted
-
-    string_id
   end
 
   defp use_existing_string_or_create_a_new_one([], key) do

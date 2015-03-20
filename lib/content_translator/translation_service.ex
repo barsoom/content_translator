@@ -29,10 +29,9 @@ defmodule ContentTranslator.TranslationService do
     locale = attributes[:locale]
     value = attributes[:value]
     name = attributes[:name]
-    key = "#{identifier}_#{name}"
+    key = TranslationKey.build(identifier, name)
 
     api.create(key, value, locale)
-    |> TranslationMapping.store(identifier, name)
 
     send caller, :translation_updated
   end

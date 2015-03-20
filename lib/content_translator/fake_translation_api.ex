@@ -18,12 +18,6 @@ defmodule ContentTranslator.FakeTranslationApi do
         } | list
       ]
     end)
-
-    last_id
-  end
-
-  defp last_id do
-    texts |> hd |> Map.get(:id)
   end
 
   defp pid do

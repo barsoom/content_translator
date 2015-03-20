@@ -54,8 +54,6 @@ See the configuration section for how to setup webhook URLs.
     heroku config:set MIX_ENV=prod
     heroku config:set HOSTNAME=some-content-translator.herokuapp.com
 
-    heroku addons:add rediscloud:25
-
     # NOTE: If you add more config variables, then also list them in elixir_buildpack.config
     heroku config:set SECRET_KEY_BASE=$(elixir -e "IO.puts :crypto.strong_rand_bytes(64) |> Base.encode64")
     heroku config:set AUTH_TOKEN=$(elixir -e "IO.puts Regex.replace(~r/[^a-zA-Z0-9]/, (:crypto.strong_rand_bytes(64) |> Base.encode64), \"\")")
@@ -85,7 +83,7 @@ See the configuration section for how to setup webhook URLs.
   - [x] Figure out how to call the WTI API in elixir
 - [ ] handle wti webhooks
   - [ ] auth
-  - [ ] consider removing redis, if the key name could be reliable enough, maybe `: ` between indentifier and name, like `help_item_31: question`. in that case, refuse input of ":" in either field
+  - [x] consider removing redis, if the key name could be reliable enough, maybe `: ` between indentifier and name, like `help_item_31: question`. in that case, refuse input of ":" in either field
   - [ ] be able to parse the request
   - [x] don't do anything when the webhook is a result of a update from this app
   - [ ] post to the client app
@@ -102,6 +100,8 @@ See the configuration section for how to setup webhook URLs.
 
 ### More
 
+- [ ] Prevent ":" in either "identifier" or "name" as that would cause problems with TranslationKey
+- [ ] Add step to readme for removing the default postgres DB so you won't think it might be used
 - [ ] Refactor WtiTranslationApi. The request parts could probably live elsewhere.
 - [ ] Screenshots of WTI in readme, diff handling, etc
 - [ ] Show app status on internal dashboard

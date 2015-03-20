@@ -6,7 +6,6 @@ config :content_translator, ContentTranslator.Endpoint,
   cache_static_lookup: false,
   translation_api: ContentTranslator.WtiTranslationApi,
   auth_token: "secret-token",
-  redis_connection_string: "redis://localhost:6379/0",
   wti_project_token: System.get_env("WTI_PROJECT_TOKEN")
 
 

@@ -6,10 +6,6 @@ defmodule ContentTranslator do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    # TODO: How to restart this process if it fails? (don't know how supervisors work yet)
-    redis_client = Exredis.start_using_connection_string(Config.redis_connection_string)
-    Process.register(redis_client, :redis)
-
     children = [
       supervisor(ContentTranslator.Endpoint, []),
       worker(ContentTranslator.TranslationService, [])

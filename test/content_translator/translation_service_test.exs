@@ -12,7 +12,7 @@ defmodule TranslationServiceTest do
     TranslationService.update(self, %{ identifier: "foo", name: "field", value: "value", locale: "en" })
 
     assert FakeTranslationApi.texts == [
-      %{ key: "foo_field", value: "value", locale: "en", id: 1 }
+      %{ key: "foo: field", value: "value", locale: "en", id: 1 }
     ]
   end
 end
