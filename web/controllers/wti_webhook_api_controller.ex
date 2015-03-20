@@ -25,6 +25,7 @@ defmodule ContentTranslator.WtiWebhookApiController do
   end
 
   defp notify_client_app(payload, user_id) do
+    #IO.inspect TranslationMapping.identifier_and_name(payload["string_id"])
     IO.inspect payload
   end
 end
