@@ -86,7 +86,7 @@ See the configuration section for how to setup webhook URLs.
   - [ ] Don't push anything to WTI that hasn't changed
 - [ ] handle wti webhooks
   - [ ] be able to parse the request
-  - [ ] don't do anything when the webhook is a result of a update from this app
+  - [x] don't do anything when the webhook is a result of a update from this app
   - [ ] post to the client app
 - [ ] handle text delete
 - [x] Authentication
