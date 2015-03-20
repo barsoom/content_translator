@@ -89,7 +89,7 @@ See the configuration section for how to setup webhook URLs.
   - [ ] don't do anything when the webhook is a result of a update from this app
   - [ ] post to the client app
 - [ ] handle text delete
-- [ ] Authentication
+- [x] Authentication
 
 ### Reliable app
 
