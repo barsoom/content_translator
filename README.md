@@ -86,6 +86,7 @@ See the configuration section for how to setup webhook URLs.
   - [ ] Don't push anything to WTI that hasn't changed
 - [ ] handle wti webhooks
   - [ ] auth
+  - [ ] consider removing redis, if the key name could be reliable enough, maybe `: ` between indentifier and name, like `help_item_31: question`. in that case, refuse input of ":" in either field
   - [ ] be able to parse the request
   - [x] don't do anything when the webhook is a result of a update from this app
   - [ ] post to the client app
