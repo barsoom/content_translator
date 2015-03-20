@@ -110,6 +110,10 @@ See the configuration section for how to setup webhook URLs.
     mix test
     mix phoenix.server
 
+### Gotchas
+
+All strings are stripped of whitespace at the end because WTI won't accept strings ending in newlines.
+
 ### Credits and license
 
 By [Barsoom](http://barsoom.se) under the MIT license:
