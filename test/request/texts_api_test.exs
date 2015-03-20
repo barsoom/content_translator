@@ -13,11 +13,11 @@ defmodule TextsApiTest do
     response = post "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "secret-token"
     assert response.status == 200
 
-    when_the_translation_has_been_updated(fn ->
-      assert FakeTranslationApi.texts == [
-        %{ key: "help_item_25_question", value: "What is elixir?", locale: "en", id: 1 }
-      ]
-    end)
+    wait_for_the_translation_to_become_updated
+
+    assert FakeTranslationApi.texts == [
+      %{ key: "help_item_25_question", value: "What is elixir?", locale: "en", id: 1 }
+    ]
   end
 
   test "creating a text with an invalid token fails" do
@@ -33,10 +33,10 @@ defmodule TextsApiTest do
 
   # the API call is async, so we need to wait for it to report back before
   # checking the result
-  defp when_the_translation_has_been_updated(callback) do
+  defp wait_for_the_translation_to_become_updated do
     receive do
       :translation_updated ->
-        callback.()
+        # continue test
       after 1000 ->
         raise "timeout"
     end
