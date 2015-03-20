@@ -4,7 +4,7 @@ defmodule TranslationMapping do
   def identifier_and_name(string_id) do
     redis
     |> get(key(string_id))
-    |> JSON.decode
+    |> JSON.parse
   end
 
   def store(string_id, identifier, name) do

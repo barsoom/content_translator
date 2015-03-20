@@ -7,7 +7,7 @@ defmodule JSON do
     Poison.encode!(data)
   end
 
-  def decode(string) do
+  def parse(string) do
     Poison.decode!(string)
   end
 end
