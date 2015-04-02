@@ -81,7 +81,7 @@ See the configuration section for how to setup webhook URLs.
 - [x] handle text update
   - [x] Set up client app in dev to post content to this app
   - [x] Figure out how to call the WTI API in elixir
-  - [ ] Handle empty texts (seems the api defaults the text to the key-name?)
+  - [x] Handle empty texts (seems the api defaults the text to the key-name?)
 - [x] ensure all our texts work, next to debug: help_item_31, de
 - [ ] handle text delete
 - [ ] handle wti webhooks
