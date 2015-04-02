@@ -13,9 +13,9 @@ defmodule ContentTranslator.WtiTranslationApi do
   end
 
   defp update_translation(string_id, value, locale) do
-    # WTI does not like string ending in newlines: "Error saving translation", "406 Not Acceptable".
-    # So far this hasn't been a problem, but if it's a problem for you, ask WTI.
-    text = String.rstrip(value)
+    # WTI does not like string begining or ending with whitespace: "Error saving translation", "406 Not Acceptable".
+    # So far just stripping it away hasn't been a problem, but if it's a problem for you, ask WTI.
+    text = String.strip(value)
 
     post("/strings/#{string_id}/locales/#{locale}/translations", %{ text: text })
     |> verify_response_code(202) # Accepted
