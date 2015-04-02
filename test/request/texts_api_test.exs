@@ -52,7 +52,7 @@ defmodule TextsApiTest do
     ]
   end
 
-  test "deleting twice should be a no-op"
+  #test "deleting twice should be a no-op"
 
   # the API call is async, so we need to wait for it to report back before
   # checking the result
