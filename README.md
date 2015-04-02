@@ -85,9 +85,9 @@ See the configuration section for how to setup webhook URLs.
 - [x] ensure all our texts work, next to debug: help_item_31, de
 - [x] handle text delete
 - [ ] handle wti webhooks
-  - [ ] auth
+  - [x] auth
   - [x] consider removing redis, if the key name could be reliable enough, maybe `: ` between indentifier and name, like `help_item_31: question`. in that case, refuse input of ":" in either field
-  - [ ] be able to parse the request
+  - [x] be able to parse the request
   - [x] don't do anything when the webhook is a result of a update from this app
   - [ ] post to the client app
 
