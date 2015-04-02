@@ -77,19 +77,19 @@ See the configuration section for how to setup webhook URLs.
 - [x] Get CI and deploy working
 - [x] Get automatic deploy working
 - [x] Set up a way to get WTI webhooks to the dev box
+- [x] Authentication
 - [x] handle text update
   - [x] Set up client app in dev to post content to this app
   - [x] Figure out how to call the WTI API in elixir
   - [ ] Handle empty texts (seems the api defaults the text to the key-name?)
+- [x] ensure all our texts work, next to debug: help_item_31, de
+- [ ] handle text delete
 - [ ] handle wti webhooks
   - [ ] auth
   - [x] consider removing redis, if the key name could be reliable enough, maybe `: ` between indentifier and name, like `help_item_31: question`. in that case, refuse input of ":" in either field
   - [ ] be able to parse the request
   - [x] don't do anything when the webhook is a result of a update from this app
   - [ ] post to the client app
-- [ ] ensure all our texts work, next to debug: help_item_31, de
-- [ ] handle text delete
-- [x] Authentication
 
 ### Reliable app
 
