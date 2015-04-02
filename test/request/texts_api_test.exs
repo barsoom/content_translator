@@ -59,11 +59,7 @@ defmodule TextsApiTest do
 
   defp post!(url, params) do
     response = post(url, params)
-
-    unless response.status == 200 do
-      raise "Expected 200, got #{response.status}"
-    end
-
+    assert response.status == 200
     response
   end
 end
