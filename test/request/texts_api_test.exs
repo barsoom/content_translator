@@ -52,8 +52,10 @@ defmodule TextsApiTest do
     end
   end
 
-  defp post(url, params) do
-    conn(:post, url, params)
+  defp post(url, params), do: call(:post, url, params)
+
+  defp call(method, url, params) do
+    conn(method, url, params)
     |> ContentTranslator.Router.call(ContentTranslator.Router.init([]))
   end
 
