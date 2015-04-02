@@ -8,16 +8,8 @@ defmodule ContentTranslator.FakeTranslationApi do
   end
 
   def create(key, value, locale) do
-    Agent.update(pid, fn (list) ->
-      [
-        %{
-          key: key,
-          value: value,
-          locale: locale,
-          id: Enum.count(list) + 1
-        } | list
-      ]
-    end)
+    known_entry = Enum.find(texts, &(&1.key == key))
+    create_or_update(key, value, locale, known_entry)
   end
 
   defp pid do
@@ -29,5 +21,31 @@ defmodule ContentTranslator.FakeTranslationApi do
     end
 
     pid
+  end
+
+  defp create_or_update(key, value, locale, _known_entry = nil) do
+    Agent.update(pid, fn (list) ->
+      list
+      |> add_entry(key, value, locale, Enum.count(list) + 1)
+    end)
+  end
+
+  defp create_or_update(key, value, locale, known_entry) do
+    Agent.update(pid, fn (list) ->
+      list
+      |> Enum.reject(&(&1 == known_entry))
+      |> add_entry(key, value, locale, known_entry.id)
+    end)
+  end
+
+  defp add_entry(list, key, value, locale, id) do
+    [
+      %{
+        key: key,
+        value: value,
+        locale: locale,
+        id: id
+      } | list
+    ]
   end
 end

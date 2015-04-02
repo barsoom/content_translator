@@ -20,12 +20,22 @@ defmodule TextsApiTest do
     ]
   end
 
+  test "updating a text does not create duplicates" do
+    post! "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "secret-token"
+    wait_for_the_translation_to_become_updated
+
+    post! "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?!", locale: "en", token: "secret-token"
+    wait_for_the_translation_to_become_updated
+
+    assert FakeTranslationApi.texts == [
+      %{ key: "help_item_25: question", value: "What is elixir?!", locale: "en", id: 1 }
+    ]
+  end
+
   test "creating a text with an invalid token fails" do
     response = post "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "invalid-secret-token"
     assert response.status == 403
   end
-
-  #test "updating a text"
 
   #test "fetching changed texts"
 
@@ -45,5 +55,15 @@ defmodule TextsApiTest do
   defp post(url, params) do
     conn(:post, url, params)
     |> ContentTranslator.Router.call(ContentTranslator.Router.init([]))
+  end
+
+  defp post!(url, params) do
+    response = post(url, params)
+
+    unless response.status == 200 do
+      raise "Expected 200, got #{response.status}"
+    end
+
+    response
   end
 end
