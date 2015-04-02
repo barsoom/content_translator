@@ -6,10 +6,12 @@ defmodule ContentTranslator.TextsApiController do
   plug :authenticate
   plug :action
 
-  def create(conn, params) do
+  def create(conn, params), do: handle_request(conn, params, :create)
+
+  defp handle_request(conn, params, action) do
     params
     |> extract_data
-    |> send_to_translation_service
+    |> send_to_translation_service(action)
 
     conn |> text("ok")
   end
@@ -20,8 +22,8 @@ defmodule ContentTranslator.TextsApiController do
     |> convert_keys_to_atom
   end
 
-  defp send_to_translation_service(attributes) do
-    TranslationService.update_in_background(attributes)
+  defp send_to_translation_service(attributes, action) do
+    TranslationService.run_in_background(action, attributes)
   end
 
   defp filter_out_unknown_keys(map) do

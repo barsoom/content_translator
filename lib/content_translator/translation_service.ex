@@ -11,7 +11,7 @@ defmodule ContentTranslator.TranslationService do
     {:noreply, state}
   end
 
-  def update_in_background(attributes) do
+  def run_in_background(action, attributes) do
     # This uses "cast" to make it async, but it will only process one
     # at a time.
 
@@ -21,17 +21,22 @@ defmodule ContentTranslator.TranslationService do
 
     # Handling different strings at once should work, but if you do that,
     # limit the number of parallel calls to be nice to WTI.
-    GenServer.cast(:translation_service, { self, attributes })
+    GenServer.cast(:translation_service, { self, [ action, attributes ] })
   end
 
-  def update(caller, attributes, api \\ Config.translation_api) do
+  def update(caller, [ action, attributes ], api \\ Config.translation_api) do
     identifier = attributes[:identifier]
     locale = attributes[:locale]
     value = attributes[:value]
     name = attributes[:name]
     key = TranslationKey.build(identifier, name)
 
-    api.create(key, value, locale)
+    case action do
+    :create ->
+      api.create(key, value, locale)
+    nil ->
+      raise "Unknown action: #{action}"
+    end
 
     send caller, :done
   end
