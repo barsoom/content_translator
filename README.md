@@ -1,6 +1,6 @@
 # NOTE: Readme Driven Development: May not do what the readme says yet.
 
-**Status**: We are sending content to WTI using this tool from one production system. The sync back isn't done yet though.
+**Status**: We are sending some content both ways between WTI and a production system. There is no error handling yet though, so updates can be lost.
 
 [CircleCi](https://circleci.com/gh/barsoom/content_translator)
 
@@ -84,12 +84,12 @@ See the configuration section for how to setup webhook URLs.
   - [x] Handle empty texts (seems the api defaults the text to the key-name?)
 - [x] ensure all our texts work, next to debug: help_item_31, de
 - [x] handle text delete
-- [ ] handle wti webhooks
+- [x] handle wti webhooks
   - [x] auth
   - [x] consider removing redis, if the key name could be reliable enough, maybe `: ` between indentifier and name, like `help_item_31: question`. in that case, refuse input of ":" in either field
   - [x] be able to parse the request
   - [x] don't do anything when the webhook is a result of a update from this app
-  - [ ] post to the client app
+  - [x] post to the client app
 
 ### Reliable app
 
