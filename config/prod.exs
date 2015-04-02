@@ -5,6 +5,7 @@ config :content_translator, ContentTranslator.Endpoint,
   http: [port: System.get_env("PORT")],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   translation_api: ContentTranslator.WtiTranslationApi,
+  client_app_api: ContentTranslator.ClientAppApi,
   auth_token: System.get_env("AUTH_TOKEN"),
   wti_project_token: System.get_env("WTI_PROJECT_TOKEN")
 

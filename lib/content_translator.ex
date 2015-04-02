@@ -8,7 +8,8 @@ defmodule ContentTranslator do
 
     children = [
       supervisor(ContentTranslator.Endpoint, []),
-      worker(ContentTranslator.TranslationService, [])
+      worker(ContentTranslator.TranslationService, []),
+      worker(ContentTranslator.ClientApp, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

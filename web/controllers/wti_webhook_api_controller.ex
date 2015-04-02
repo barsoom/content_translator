@@ -1,6 +1,8 @@
 defmodule ContentTranslator.WtiWebhookApiController do
   use ContentTranslator.Web, :controller
 
+  alias ContentTranslator.ClientApp
+
   plug :action
 
   # Example payload
@@ -25,7 +27,19 @@ defmodule ContentTranslator.WtiWebhookApiController do
   end
 
   defp notify_client_app(payload, user_id) do
-    IO.inspect payload
-    IO.inspect TranslationKey.parse(payload["translation"]["string"]["key"])
+    payload
+    |> extract_data
+    |> ClientApp.update_in_background
+  end
+
+  defp extract_data(payload) do
+    [ identifier, name ] = TranslationKey.parse(payload["translation"]["string"]["key"])
+
+    %{
+      identifier: identifier,
+      name: name,
+      text: payload["translation"]["text"],
+      locale: payload["locale"]
+    }
   end
 end

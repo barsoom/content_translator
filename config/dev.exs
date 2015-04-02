@@ -5,6 +5,7 @@ config :content_translator, ContentTranslator.Endpoint,
   debug_errors: true,
   cache_static_lookup: false,
   translation_api: ContentTranslator.WtiTranslationApi,
+  client_app_api: ContentTranslator.ClientAppApi,
   auth_token: "secret-token",
   wti_project_token: System.get_env("WTI_PROJECT_TOKEN")
 
