@@ -33,6 +33,26 @@ defmodule ContentTranslator.Web do
     end
   end
 
+  def api_controller do
+    quote do
+      use Phoenix.Controller
+
+      plug :authenticate
+
+      defp authenticate(conn, _options) do
+        if conn.params["token"] == Config.auth_token do
+          conn
+        else
+          conn |> deny_and_halt
+        end
+      end
+
+      defp deny_and_halt(conn) do
+        conn |> send_resp(403, "Denied") |> halt
+      end
+    end
+  end
+
   def model do
     quote do
     end
