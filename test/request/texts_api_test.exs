@@ -45,14 +45,17 @@ defmodule TextsApiTest do
 
     response = delete "/api/texts", identifier: "help_item_25", name: "question", token: "secret-token"
     assert response.status == 200
+
+    # A second delete is a no-op
+    response = delete "/api/texts", identifier: "help_item_25", name: "question", token: "secret-token"
+    assert response.status == 200
+
     wait_for_the_translation_to_be_processed
 
     assert FakeTranslationApi.texts == [
       %{ key: "help_item_25: answer", value: "A...", locale: "en", id: 2 }
     ]
   end
-
-  #test "deleting twice should be a no-op"
 
   # the API call is async, so we need to wait for it to report back before
   # checking the result

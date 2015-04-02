@@ -11,6 +11,15 @@ defmodule ContentTranslator.WtiTranslationApi do
 
   def destroy(key) do
     find_existing_strings(key)
+    |> delete_when_a_string_exists
+  end
+
+  defp delete_when_a_string_exists([]) do
+    # no-op when there is no string to delete
+  end
+
+  defp delete_when_a_string_exists(strings) do
+    strings
     |> hd
     |> get_id
     |> delete_by_id
