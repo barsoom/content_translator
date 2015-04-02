@@ -2,6 +2,8 @@
 # TODO: Look into webmocks and vcr-like tools.
 
 defmodule ContentTranslator.WtiTranslationApi do
+  alias ContentTranslator.WtiTranslationApi.Endpoint
+
   def create(key, value, locale) do
     create_string(key)
     |> update_translation(value, locale)
@@ -56,25 +58,6 @@ defmodule ContentTranslator.WtiTranslationApi do
     response
   end
 
-  defp get(path) do
-    api_call(:get, path)
-  end
-
-  defp post(path, data) do
-    api_call(:post, path, data)
-  end
-
-  defp api_call(method, path, data \\ %{}) do
-    HTTPotion.request(method,
-      "https://webtranslateit.com/api/projects/#{project_token}/#{path}",
-      [
-        body: JSON.encode(data),
-        headers: [ "Content-Type": "application/json" ]
-      ]
-    )
-  end
-
-  defp project_token do
-    Config.wti_project_token
-  end
+  defp post(path, data), do: Endpoint.post(path, data)
+  defp get(path), do: Endpoint.get(path)
 end
