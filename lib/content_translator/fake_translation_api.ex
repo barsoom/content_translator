@@ -12,15 +12,11 @@ defmodule ContentTranslator.FakeTranslationApi do
     create_or_update(key, value, locale, known_entry)
   end
 
-  defp pid do
-    pid = Process.whereis(:fake_translator)
-
-    unless pid do
-      {:ok, pid} = Agent.start_link(fn -> [] end)
-      Process.register(pid, :fake_translator)
-    end
-
-    pid
+  def destroy(key) do
+    Agent.update(pid, fn (list) ->
+      list
+      |> Enum.reject(&(&1.key == key))
+    end)
   end
 
   defp create_or_update(key, value, locale, _known_entry = nil) do
@@ -47,5 +43,16 @@ defmodule ContentTranslator.FakeTranslationApi do
         id: id
       } | list
     ]
+  end
+
+  defp pid do
+    pid = Process.whereis(:fake_translator)
+
+    unless pid do
+      {:ok, pid} = Agent.start_link(fn -> [] end)
+      Process.register(pid, :fake_translator)
+    end
+
+    pid
   end
 end

@@ -34,6 +34,8 @@ defmodule ContentTranslator.TranslationService do
     case action do
     :create ->
       api.create(key, value, locale)
+    :destroy ->
+      api.destroy(key)
     nil ->
       raise "Unknown action: #{action}"
     end

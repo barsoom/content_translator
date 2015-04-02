@@ -1,11 +1,7 @@
 defmodule ContentTranslator.WtiTranslationApi.Endpoint do
-  def get(path) do
-    api_call(:get, path)
-  end
-
-  def post(path, data) do
-    api_call(:post, path, data)
-  end
+  def get(path), do: api_call(:get, path)
+  def post(path, data), do: api_call(:post, path, data)
+  def delete(path), do: api_call(:delete, path)
 
   defp api_call(method, path, data \\ %{}) do
     HTTPotion.request(method,

@@ -14,6 +14,7 @@ defmodule ContentTranslator.Router do
   scope "/api", ContentTranslator do
     pipe_through :api
     post "/texts", TextsApiController, :create
+    delete "/texts", TextsApiController, :destroy
     post "/wti_webhook", WtiWebhookApiController, :create
   end
 end

@@ -9,6 +9,18 @@ defmodule ContentTranslator.WtiTranslationApi do
     |> update_translation(value, locale)
   end
 
+  def destroy(key) do
+    find_existing_strings(key)
+    |> hd
+    |> get_id
+    |> delete_by_id
+  end
+
+  defp delete_by_id(id) do
+    delete("/strings/#{id}")
+    |> verify_response_code(202)
+  end
+
   defp create_string(key) do
     find_existing_strings(key)
     |> use_existing_string_or_create_a_new_one(key)
@@ -58,6 +70,7 @@ defmodule ContentTranslator.WtiTranslationApi do
     response
   end
 
-  defp post(path, data), do: Endpoint.post(path, data)
   defp get(path), do: Endpoint.get(path)
+  defp post(path, data), do: Endpoint.post(path, data)
+  defp delete(path), do: Endpoint.delete(path)
 end
