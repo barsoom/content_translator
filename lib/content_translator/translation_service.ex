@@ -33,6 +33,6 @@ defmodule ContentTranslator.TranslationService do
 
     api.create(key, value, locale)
 
-    send caller, :translation_updated
+    send caller, :done
   end
 end

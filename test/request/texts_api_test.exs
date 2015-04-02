@@ -13,7 +13,7 @@ defmodule TextsApiTest do
     response = post "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "secret-token"
     assert response.status == 200
 
-    wait_for_the_translation_to_become_updated
+    wait_for_the_translation_to_be_processed
 
     assert FakeTranslationApi.texts == [
       %{ key: "help_item_25: question", value: "What is elixir?", locale: "en", id: 1 }
@@ -22,10 +22,10 @@ defmodule TextsApiTest do
 
   test "updating a text does not create duplicates" do
     post! "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "secret-token"
-    wait_for_the_translation_to_become_updated
+    wait_for_the_translation_to_be_processed
 
     post! "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?!", locale: "en", token: "secret-token"
-    wait_for_the_translation_to_become_updated
+    wait_for_the_translation_to_be_processed
 
     assert FakeTranslationApi.texts == [
       %{ key: "help_item_25: question", value: "What is elixir?!", locale: "en", id: 1 }
@@ -43,9 +43,9 @@ defmodule TextsApiTest do
 
   # the API call is async, so we need to wait for it to report back before
   # checking the result
-  defp wait_for_the_translation_to_become_updated do
+  defp wait_for_the_translation_to_be_processed do
     receive do
-      :translation_updated ->
+      :done ->
         # continue test
       after 1000 ->
         raise "timeout"
