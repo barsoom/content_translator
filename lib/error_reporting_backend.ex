@@ -13,9 +13,10 @@ defmodule ErrorReportingBackend do
   def handle_event({:error, _pid, event}, state) do
     { Logger, error_message, _date_and_time, _pid } = event
 
-    error_message = inspect(error_message)
-
-    report_error(error_message)
+    error_message
+    |> inspect  # it's sometimes a string, sometimes a few other things, at this point, we don't care
+                # as long as it's reported
+    |> report_error
 
     {:ok, state}
   end
