@@ -6,6 +6,8 @@ defmodule ContentTranslator do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    Logger.add_backend ErrorReportingBackend
+
     children = [
       supervisor(ContentTranslator.Endpoint, []),
       worker(ContentTranslator.TranslationService, []),

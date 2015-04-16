@@ -4,7 +4,8 @@ config :content_translator, ContentTranslator.Endpoint,
   http: [port: System.get_env("PORT") || 4001],
   translation_api: ContentTranslator.FakeTranslationApi,
   client_app_api: ContentTranslator.FakeClientAppApi,
-  auth_token: "secret-token"
+  auth_token: "secret-token",
+  honeybadger_api_key: System.get_env("HONEYBADGER_API_KEY")
 
 # Print only warnings and errors during test
 config :logger, level: :warn

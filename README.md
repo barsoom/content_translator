@@ -59,6 +59,7 @@ See the configuration section for how to setup webhook URLs.
     heroku config:set CLIENT_APP_WEBHOOK_URL=""https://example.com/api/somewhere?your_auth_token=123"
     heroku config:set WTI_PROJECT_ID=123
     heroku config:set WTI_PROJECT_TOKEN=token # must be the read-write token
+    heroku config:set HONEYBADGER_API_KEY=your-api-key
 
     git push heroku master
 
@@ -93,7 +94,7 @@ See the configuration section for how to setup webhook URLs.
 
 ### Reliable app
 
-- [ ] Error reporting to honeybadger
+- [x] Error reporting to honeybadger
 - [ ] Reliability
   - [ ] be able to work though stored requests, e.g. background job, possibly boot up processes on app-boot, and otherwise just issue a process as needed when a request comes in.
   - [ ] be able to poll wti if this app has been during a webhook?

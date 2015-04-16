@@ -10,6 +10,7 @@ defmodule ContentTranslator.Router do
   end
 
   get "/", ContentTranslator.PageController, :index
+  get "/boom", ContentTranslator.BoomController, :index
 
   scope "/api", ContentTranslator do
     pipe_through :api
