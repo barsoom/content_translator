@@ -5,12 +5,17 @@ defmodule ContentTranslator.WtiTranslationApi.Endpoint do
 
   defp api_call(method, path, data \\ %{}) do
     HTTPotion.request(method,
-      "https://webtranslateit.com/api/projects/#{project_token}/#{path}",
+      url(path),
       [
         body: JSON.encode(data),
         headers: [ "Content-Type": "application/json" ]
       ]
     )
+  end
+
+  defp url(path) do
+    "https://webtranslateit.com/api/projects/#{project_token}/#{path}"
+    |> URI.encode
   end
 
   defp project_token do
