@@ -96,9 +96,10 @@ See the configuration section for how to setup webhook URLs.
 
 - [x] Error reporting to honeybadger
 - [ ] Reliability
-  - [ ] be able to work though stored requests, e.g. background job
-  - [ ] be able to poll wti if this app has been during a webhook?
+  - [ ] be able to work though stored requests, e.g. background job (make app restart safe)
   - [ ] retry posting to the client app as the readme says
+    - explore how messages are handled on worker restart, does it retry? exponential standoff possible?
+  - [ ] retry posting to wti
 - [ ] Configure internal chat notifications for honeybadger errors
 
 ### More
@@ -106,7 +107,7 @@ See the configuration section for how to setup webhook URLs.
 - [ ] Error reporting that is grouped correctly in honeybadger
 - [ ] Prevent ":" in either "identifier" or "name" as that would cause problems with TranslationKey
 - [ ] Add step to readme for removing the default postgres DB so you won't think it might be used
-- [ ] Refactor WtiTranslationApi. The request parts could probably live elsewhere.
+- [x] Refactor WtiTranslationApi. The request parts could probably live elsewhere.
 - [ ] Screenshots of WTI in readme, diff handling, etc
 - [ ] Show app status on internal dashboard
 - [ ] Open source generic parts of the ruby client
