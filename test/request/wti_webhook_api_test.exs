@@ -28,6 +28,6 @@ defmodule WtiWebhookApiTest do
 
   # the API call is async, so we need to wait for it to finish
   defp wait_for_the_translation_update_to_sent do
-    :timer.sleep 10
+    :timer.sleep 100
   end
 end

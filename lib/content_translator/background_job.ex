@@ -40,7 +40,6 @@ defmodule ContentTranslator.BackgroundJob do
   end
 
   defp run_job(caller, job_id, genserver_name, data) do
-    IO.inspect genserver_name: genserver_name, data: data
     GenServer.cast(genserver_name, { self, data })
 
     receive do

@@ -59,7 +59,7 @@ defmodule TextsApiTest do
 
   # the API call is async, so we need to wait for it to finish
   defp wait_for_the_translation_to_be_processed do
-    :timer.sleep 10
+    :timer.sleep 100
   end
 
   defp post(url, params), do: call(:post, url, params)
