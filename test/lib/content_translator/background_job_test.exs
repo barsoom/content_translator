@@ -1,4 +1,4 @@
-defmodule BackgroundJobTest do
+defmodule ContentTranslator.BackgroundJobTest do
   use ExUnit.Case
 
   test "" do
