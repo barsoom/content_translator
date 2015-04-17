@@ -12,7 +12,7 @@ defmodule ContentTranslator.ClientApp do
   end
 
   def update_in_background(attributes) do
-    GenServer.cast(:client_app, { self, attributes })
+    ContentTranslator.BackgroundJob.enqueue(:client_app, attributes)
   end
 
   def update(caller, attributes, api \\ Config.client_app_api) do

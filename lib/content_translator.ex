@@ -10,6 +10,7 @@ defmodule ContentTranslator do
 
     children = [
       supervisor(ContentTranslator.Endpoint, []),
+      worker(ContentTranslator.BackgroundJob, []),
       worker(ContentTranslator.TranslationService, []),
       worker(ContentTranslator.ClientApp, []),
     ]

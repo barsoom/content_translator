@@ -12,8 +12,7 @@ defmodule ContentTranslator.TranslationService do
   end
 
   def run_in_background(action, attributes) do
-    # This uses "cast" to make it async, but it will only process one
-    # at a time.
+    # This background processor will only run one job at a time.
 
     # Making parallel calls for the same string (one for each locale)
     # won't work because of how the WTI API works. It assumes you know if
@@ -21,7 +20,7 @@ defmodule ContentTranslator.TranslationService do
 
     # Handling different strings at once should work, but if you do that,
     # limit the number of parallel calls to be nice to WTI.
-    GenServer.cast(:translation_service, { self, [ action, attributes ] })
+    ContentTranslator.BackgroundJob.enqueue(:translation_service, [ action, attributes ])
   end
 
   def update(caller, [ action, attributes ], api \\ Config.translation_api) do
