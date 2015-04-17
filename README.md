@@ -1,6 +1,6 @@
 # NOTE: Readme Driven Development: May not do what the readme says yet.
 
-**Status**: We are sending some content both ways between WTI and a production system. There is no error handling yet though, so updates can be lost.
+**Status**: We are sending some content both ways between WTI and a production system. There are some error handling, it has error reporting (to honeybadger) and messages are persisted, but it's not quite 1.0 yet.
 
 [CircleCi](https://circleci.com/gh/barsoom/content_translator)
 
