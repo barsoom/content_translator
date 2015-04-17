@@ -38,7 +38,7 @@ defmodule ContentTranslator.BackgroundJob do
       :done ->
         mark_job_as_finished(job_id)
       after @job_timeout_in_seconds * 1000 ->
-        raise "Job timed out, took longer than #{@job_timeout_in_seconds}"
+        raise "Job timed out, took longer than #{@job_timeout_in_seconds}. Job: #{genserver_name} #{data}."
     end
   end
 
