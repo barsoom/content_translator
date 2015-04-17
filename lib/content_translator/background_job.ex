@@ -10,14 +10,6 @@ defmodule ContentTranslator.BackgroundJob do
 
   @job_timeout_in_seconds 30
 
-  # todo:
-  # - save in redis in web process
-  # - fork off ("cast" to BackgroundJob)
-  #   - GenServer.cast(server_name, { self, data })
-  #   - wait for response
-  #   - remove from redis
-  #   - send response to client
-
   def start_link do
     state = []
     server = GenServer.start_link(__MODULE__, state, [ name: :background_job ])
