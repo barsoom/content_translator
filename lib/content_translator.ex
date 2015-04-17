@@ -8,6 +8,14 @@ defmodule ContentTranslator do
 
     Logger.add_backend ErrorReportingBackend
 
+    redis_client = Exredis.start_using_connection_string(Config.redis_connection_string)
+    Process.register(redis_client, :redis)
+
+    # TODO: do this in a cleaner way, preferabbly after each redis test
+    if Mix.env == :test do
+      Exredis.query(redis_client, [ "FLUSHDB" ])
+    end
+
     children = [
       supervisor(ContentTranslator.Endpoint, []),
       worker(ContentTranslator.BackgroundJob, []),

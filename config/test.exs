@@ -5,7 +5,8 @@ config :content_translator, ContentTranslator.Endpoint,
   translation_api: ContentTranslator.FakeTranslationApi,
   client_app_api: ContentTranslator.FakeClientAppApi,
   auth_token: "secret-token",
-  honeybadger_api_key: System.get_env("HONEYBADGER_API_KEY")
+  honeybadger_api_key: System.get_env("HONEYBADGER_API_KEY"),
+  redis_connection_string: "redis://localhost:6379/1"
 
 # Print only warnings and errors during test
 config :logger, level: :warn

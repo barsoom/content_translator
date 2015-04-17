@@ -61,6 +61,8 @@ See the configuration section for how to setup webhook URLs.
     heroku config:set WTI_PROJECT_TOKEN=token # must be the read-write token
     heroku config:set HONEYBADGER_API_KEY=your-api-key
 
+    heroku addons:add rediscloud:25
+
     git push heroku master
 
 ### Configure check that it works
@@ -96,14 +98,18 @@ See the configuration section for how to setup webhook URLs.
 
 - [x] Error reporting to honeybadger
 - [ ] Reliability
-  - [ ] be able to work though stored requests, e.g. background job (make app restart safe)
+  - [x] be able to work though stored requests, e.g. background job (make app restart safe)
+  - [ ] test stored background jobs feature in prod
   - [ ] retry posting to the client app as the readme says
     - explore how messages are handled on worker restart, does it retry? exponential standoff possible?
   - [ ] retry posting to wti
+  - [ ] figure out testing
 - [ ] Configure internal chat notifications for honeybadger errors
 
 ### More
 
+- [ ] Restart the redis process if it fails? Add to supervisor somehow?
+- [ ] Reset redis after each redis test instead of in ContentTranslator at boot
 - [ ] Error reporting that is grouped correctly in honeybadger
 - [ ] Prevent ":" in either "identifier" or "name" as that would cause problems with TranslationKey
 - [ ] Add step to readme for removing the default postgres DB so you won't think it might be used

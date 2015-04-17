@@ -26,14 +26,8 @@ defmodule WtiWebhookApiTest do
     |> ContentTranslator.Router.call(ContentTranslator.Router.init([]))
   end
 
-  # the API call is async, so we need to wait for it to report back before
-  # checking the result
+  # the API call is async, so we need to wait for it to finish
   defp wait_for_the_translation_update_to_sent do
-    receive do
-      :done ->
-        # continue test
-      after 1000 ->
-        raise "timeout"
-    end
+    :timer.sleep 10
   end
 end

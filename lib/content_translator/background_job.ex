@@ -6,6 +6,7 @@
 
 defmodule ContentTranslator.BackgroundJob do
   use GenServer
+  alias ContentTranslator.BackgroundJob.Persistance
 
   @job_timeout_in_seconds 30
 
@@ -20,48 +21,42 @@ defmodule ContentTranslator.BackgroundJob do
   def start_link do
     state = []
     server = GenServer.start_link(__MODULE__, state, [ name: :background_job ])
-    run_previously_enqueued_jobs
+    enqueue_previously_enqueued_jobs
     server
   end
 
   def enqueue(genserver_name, data) do
     add_job(genserver_name, data)
-    run_job_in_background(genserver_name, data)
+    |> run_job_in_background(genserver_name, data)
   end
 
-  def handle_cast({ caller, [ genserver_name, data ] }, state) do
-    run_job(caller, genserver_name, data)
+  def handle_cast({ caller, [ job_id, genserver_name, data ] }, state) do
+    run_job(caller, job_id, genserver_name, data)
     {:noreply, state}
   end
 
-  defp run_job_in_background(genserver_name, data) do
-    GenServer.cast(:background_job, { self, [ genserver_name, data ] })
+  defp run_job_in_background(job_id, genserver_name, data) do
+    GenServer.cast(:background_job, { self, [ job_id, genserver_name, data ] })
   end
 
-  defp run_job(caller, genserver_name, data) do
+  defp run_job(caller, job_id, genserver_name, data) do
+    IO.inspect genserver_name: genserver_name, data: data
     GenServer.cast(genserver_name, { self, data })
 
     receive do
-      message ->
-        send caller, message
+      :done ->
+        mark_job_as_finished(job_id)
       after @job_timeout_in_seconds * 1000 ->
         raise "Job timed out, took longer than #{@job_timeout_in_seconds}"
     end
-
-    mark_job_as_finished(genserver_name, data)
   end
 
-  defp add_job(genserver_name, data) do
-    # TODO: add to redis
-  end
+  defp add_job(genserver_name, data), do: Persistance.add_job(genserver_name, data)
+  defp mark_job_as_finished(job_id), do: Persistance.mark_job_as_finished(job_id)
 
-  defp mark_job_as_finished(genserver_name, data) do
-    # TODO: remove from redis
-  end
-
-  defp run_previously_enqueued_jobs do
-    IO.inspect "TODO: Run previously enqueued jobs"
-    # read from redis
-    # for each: run_job_in_background
+  defp enqueue_previously_enqueued_jobs do
+    Enum.each(Persistance.previously_enqueued_jobs, fn({ job_id, genserver_name, data }) ->
+      run_job_in_background(job_id, genserver_name, data)
+    end)
   end
 end
