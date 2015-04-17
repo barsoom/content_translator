@@ -96,7 +96,7 @@ See the configuration section for how to setup webhook URLs.
 
 - [x] Error reporting to honeybadger
 - [ ] Reliability
-  - [ ] be able to work though stored requests, e.g. background job, possibly boot up processes on app-boot, and otherwise just issue a process as needed when a request comes in.
+  - [ ] be able to work though stored requests, e.g. background job
   - [ ] be able to poll wti if this app has been during a webhook?
   - [ ] retry posting to the client app as the readme says
 - [ ] Configure internal chat notifications for honeybadger errors
