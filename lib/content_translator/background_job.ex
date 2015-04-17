@@ -47,7 +47,7 @@ defmodule ContentTranslator.BackgroundJob do
 
   defp enqueue_previously_enqueued_jobs do
     Enum.each(Persistance.previously_enqueued_jobs, fn({ job_id, genserver_name, data }) ->
-      Logger.log(:debug, "Adding job from redis on app boot: #{genserver_name}, #{data}")
+      Logger.log(:debug, "Adding job from redis on app boot: #{genserver_name}, #{inspect(data)}")
       run_job_in_background(job_id, genserver_name, data)
     end)
   end
