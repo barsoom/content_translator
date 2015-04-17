@@ -99,11 +99,11 @@ See the configuration section for how to setup webhook URLs.
 - [x] Error reporting to honeybadger
 - [ ] Reliability
   - [x] be able to work though stored requests, e.g. background job (make app restart safe)
-  - [ ] test stored background jobs feature in prod
+  - [x] test stored background jobs feature in prod
+  - [ ] figure out testing
   - [ ] retry posting to the client app as the readme says
     - explore how messages are handled on worker restart, does it retry? exponential standoff possible?
   - [ ] retry posting to wti
-  - [ ] figure out testing
 - [ ] Configure internal chat notifications for honeybadger errors
 
 ### More
