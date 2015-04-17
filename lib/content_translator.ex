@@ -23,6 +23,12 @@ defmodule ContentTranslator do
       worker(ContentTranslator.ClientApp, []),
     ]
 
+    # TODO: do a cleaner "after_app_boot" callback
+    spawn fn ->
+      :timer.sleep 3000
+      ContentTranslator.BackgroundJob.run_previously_enqueued_jobs
+    end
+
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: ContentTranslator.Supervisor]

@@ -12,9 +12,14 @@ defmodule ContentTranslator.BackgroundJob do
 
   def start_link do
     state = []
-    server = GenServer.start_link(__MODULE__, state, [ name: :background_job ])
-    enqueue_previously_enqueued_jobs
-    server
+    GenServer.start_link(__MODULE__, state, [ name: :background_job ])
+  end
+
+  def run_previously_enqueued_jobs do
+    Enum.each(Persistance.previously_enqueued_jobs, fn({ job_id, genserver_name, data }) ->
+      Logger.log(:debug, "Adding job from redis on app boot: #{genserver_name}, #{inspect(data)}")
+      run_job_in_background(job_id, genserver_name, data)
+    end)
   end
 
   def enqueue(genserver_name, data) do
@@ -44,11 +49,4 @@ defmodule ContentTranslator.BackgroundJob do
 
   defp add_job(genserver_name, data), do: Persistance.add_job(genserver_name, data)
   defp mark_job_as_finished(job_id), do: Persistance.mark_job_as_finished(job_id)
-
-  defp enqueue_previously_enqueued_jobs do
-    Enum.each(Persistance.previously_enqueued_jobs, fn({ job_id, genserver_name, data }) ->
-      Logger.log(:debug, "Adding job from redis on app boot: #{genserver_name}, #{inspect(data)}")
-      run_job_in_background(job_id, genserver_name, data)
-    end)
-  end
 end
