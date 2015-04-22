@@ -118,6 +118,8 @@ See the configuration section for how to setup webhook URLs.
 - [ ] Show app status on internal dashboard
 - [ ] Open source generic parts of the ruby client
 - [ ] Don't push anything to WTI that hasn't changed (but if this app does not keep any state that could be hard, could leave that up to the client app)
+- [ ] Would it be easy to setup a Dockerfile and post this to dockerhub? Easy alternative to heroku.
+  - How to handle config?
 
 ## Development
 
