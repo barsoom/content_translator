@@ -100,6 +100,7 @@ See the configuration section for how to setup webhook URLs.
 - [ ] Reliability
   - [x] be able to work though stored requests, e.g. background job (make app restart safe)
   - [x] test stored background jobs feature in prod
+  - [ ] ensure the source language is always posted first to avoid validation issues
   - [ ] figure out testing
   - [ ] retry posting to the client app as the readme says
     - explore how messages are handled on worker restart, does it retry? exponential standoff possible?
