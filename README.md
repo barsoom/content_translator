@@ -136,6 +136,8 @@ All strings are stripped of whitespace at the end because WTI won't accept strin
 
 WTI does some validation. One example of this is that the translated text must end with a newline if the source test does. One way of getting around this is to not let the user edit the translated text in the source system. If all translations are done in WTI the user has to deal with it's validations before being able to save.
 
+I've asked the WTI maintainer to return the actual validation error in the API response. At the time of writing it just says that something is wrong.
+
 ### Credits and license
 
 By [Barsoom](http://barsoom.se) under the MIT license:
