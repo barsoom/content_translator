@@ -19,7 +19,7 @@ defmodule ContentTranslator.BackgroundJob.Persistance do
     redis
     |> hgetall(:jobs)
     |> Enum.map fn({ key, data }) ->
-      { number, _ } = Integer.parse(key)
+      { number, _remainder_of_string } = Integer.parse(key)
       job = :erlang.binary_to_term(data)
       { number, job.genserver_name, job.data }
     end
