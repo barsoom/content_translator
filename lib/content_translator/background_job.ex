@@ -37,6 +37,8 @@ defmodule ContentTranslator.BackgroundJob do
   end
 
   defp run_job(caller, job_id, genserver_name, data) do
+    # Using cast and not call (async and not sync) so that we can raise
+    # an error if a job takes too long to run.
     GenServer.cast(genserver_name, { self, data })
 
     receive do
