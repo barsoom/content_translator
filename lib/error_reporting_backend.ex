@@ -28,7 +28,7 @@ defmodule ErrorReportingBackend do
   defp report_error(error_message) do
     error_message
     |> build_payload
-    |> send_to_honeybadger
+    |> send_to_honeybadger(Config.honeybadger_api_key)
   end
 
   defp build_payload(error_message) do
@@ -48,13 +48,17 @@ defmodule ErrorReportingBackend do
     }
   end
 
-  defp send_to_honeybadger(payload) do
+  defp send_to_honeybadger(payload, nil) do
+    # no-op when there is no api key (usually in dev)
+  end
+
+  defp send_to_honeybadger(payload, api_key) do
     response = HTTPotion.post("https://api.honeybadger.io/v1/notices",
       [
         body: JSON.encode(payload),
         headers: [
           "Content-Type": "application/json; charset=utf-8",
-          "X-API-Key": Config.honeybadger_api_key,
+          "X-API-Key": api_key,
           "Accept": "application/json"
         ]
       ]
