@@ -132,6 +132,10 @@ See the configuration section for how to setup webhook URLs.
 
 All strings are stripped of whitespace at the end because WTI won't accept strings ending in newlines.
 
+### Seeing 406 errors from WTI?
+
+WTI does some validation. One example of this is that the translated text must end with a newline if the source test does. One way of getting around this is to not let the user edit the translated text in the source system. If all translations are done in WTI the user has to deal with it's validations before being able to save.
+
 ### Credits and license
 
 By [Barsoom](http://barsoom.se) under the MIT license:
