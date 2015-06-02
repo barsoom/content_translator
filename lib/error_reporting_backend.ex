@@ -3,6 +3,9 @@
 # There isn't any honeybadger plugin for the elixir Logger as far
 # as I have found. This is good enough for our purposes.
 
+# This is based on the erlang client, if you want to improve upon this client, you might find some inspiration there:
+# https://github.com/fyler/lager_honeybadger_backend/blob/master/src/lager_honeybadger_backend.erl
+
 defmodule ErrorReportingBackend do
   use GenEvent
 
