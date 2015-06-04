@@ -7,6 +7,8 @@
 # https://github.com/fyler/lager_honeybadger_backend/blob/master/src/lager_honeybadger_backend.erl
 
 defmodule ErrorReportingBackend do
+  @version "1.0"
+
   use GenEvent
 
   def init(_) do
@@ -39,7 +41,7 @@ defmodule ErrorReportingBackend do
       notifier: %{
         name: "ErrorReportingBackend",
         url: "",
-        version: "1.0"
+        version: @version
       },
       error: %{
         class: "Error",
