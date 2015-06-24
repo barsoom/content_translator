@@ -6,8 +6,6 @@ defmodule ContentTranslator do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    Logger.add_backend ErrorReportingBackend
-
     redis_client = Exredis.start_using_connection_string(Config.redis_connection_string)
     Process.register(redis_client, :redis)
 

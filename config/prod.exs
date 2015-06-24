@@ -9,7 +9,6 @@ config :content_translator, ContentTranslator.Endpoint,
   auth_token: System.get_env("AUTH_TOKEN"),
   wti_project_token: System.get_env("WTI_PROJECT_TOKEN"),
   client_app_webhook_url: System.get_env("CLIENT_APP_WEBHOOK_URL"),
-  honeybadger_api_key: System.get_env("HONEYBADGER_API_KEY"),
   redis_connection_string: System.get_env("REDISCLOUD_URL")
 
 # ## SSL Support
