@@ -56,7 +56,7 @@ See the configuration section for how to setup webhook URLs.
     # NOTE: If you add more config variables, then also list them in elixir_buildpack.config
     heroku config:set SECRET_KEY_BASE=$(elixir -e "IO.puts :crypto.strong_rand_bytes(64) |> Base.encode64")
     heroku config:set AUTH_TOKEN=$(elixir -e "IO.puts Regex.replace(~r/[^a-zA-Z0-9]/, (:crypto.strong_rand_bytes(64) |> Base.encode64), \"\")")
-    heroku config:set CLIENT_APP_WEBHOOK_URL=""https://example.com/api/somewhere?your_auth_token=123"
+    heroku config:set CLIENT_APP_WEBHOOK_URL="https://example.com/api/somewhere?your_auth_token=123"
     heroku config:set WTI_PROJECT_ID=123
     heroku config:set WTI_PROJECT_TOKEN=token # must be the read-write token
     heroku config:set HONEYBADGER_API_KEY=your-api-key
