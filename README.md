@@ -104,6 +104,7 @@ See the configuration section for how to setup webhook URLs.
 - [ ] Reliability
   - [x] be able to work though stored requests, e.g. background job (make app restart safe)
   - [x] test stored background jobs feature in prod
+  - [ ] verify that all our content can still be sent to WTI (as their validations evolve over time)
   - [ ] ensure timeouts in bg jobs means they are retried
   - [ ] ensure the source language is always posted first to avoid validation issues
   - [ ] figure out testing
