@@ -3,7 +3,7 @@ defmodule ContentTranslator.ClientAppApi do
     HTTPotion.post(
       Config.client_app_webhook_url,
       [
-        body: "payload=#{Base.encode64(JSON.encode(attributes))}"
+        body: "payload=#{JSON.encode(attributes)}"
       ]
     )
     |> verify_response_code(200)

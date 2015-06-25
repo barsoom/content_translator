@@ -27,18 +27,14 @@ See the configuration section for how to setup the token.
 
 Changes are sent back using a webhook. The webhook retries until it get's a 200 response or 3 hours has passed.
 
-The value of `payload` in the POST body is base64 encoded since I've seen issues with nginx responding 400 bad request for some large JSON blobs:
-
-      payload=eyJ0ZXh0IjoiVmFkIMOkciBlbGl4aXI/IiwibmFtZSI6InF1ZXN0aW9uIiwibG9jYWxlIjoic3YiLCJpZGVudGlmaWVyIjoiaGVscF9pdGVtXzI1In0=
-
-If you decode the message you get JSON like this:
+The value of `payload` is JSON:
 
       payload={"text":"Vad är elixir?","name":"question","locale":"sv","identifier":"help_item_25"}
 
 In rails you can do this:
 
       # The payload is 7 bit ASCII, but the data is actually UTF-8
-      payload = JSON.parse(Base64.decode64(params[:payload]).force_encoding("utf-8"))
+      payload = JSON.parse(params[:payload])
       payload["name"] # => "question"
 
 See the configuration section for how to setup webhook URLs.
