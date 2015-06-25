@@ -27,14 +27,18 @@ See the configuration section for how to setup the token.
 
 Changes are sent back using a webhook. The webhook retries until it get's a 200 response or 3 hours has passed.
 
-The message looks like:
+The value of `payload` in the POST body is base64 encoded since I've seen issues with nginx responding 400 bad request for some large JSON blobs:
 
-      {
-        identifier: "help_item_25",
-        name: "question",
-        text: "Vad är elixir?"
-        locale: "sv",
-      }
+      payload=eyJ0ZXh0IjoiVmFkIMOkciBlbGl4aXI/IiwibmFtZSI6InF1ZXN0aW9uIiwibG9jYWxlIjoic3YiLCJpZGVudGlmaWVyIjoiaGVscF9pdGVtXzI1In0=
+
+If you decode the message you get JSON like this:
+
+      payload={"text":"Vad är elixir?","name":"question","locale":"sv","identifier":"help_item_25"}
+
+In rails you can do this:
+
+      payload = JSON.parse(Base64.decode64(params[:payload]))
+      payload["name"] # => "question"
 
 See the configuration section for how to setup webhook URLs.
 
@@ -100,6 +104,7 @@ See the configuration section for how to setup webhook URLs.
 - [ ] Reliability
   - [x] be able to work though stored requests, e.g. background job (make app restart safe)
   - [x] test stored background jobs feature in prod
+  - [ ] ensure timeouts in bg jobs means they are retried
   - [ ] ensure the source language is always posted first to avoid validation issues
   - [ ] figure out testing
   - [ ] retry posting to the client app as the readme says
