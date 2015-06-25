@@ -37,7 +37,8 @@ If you decode the message you get JSON like this:
 
 In rails you can do this:
 
-      payload = JSON.parse(Base64.decode64(params[:payload]))
+      # The payload is 7 bit ASCII, but the data is actually UTF-8
+      payload = JSON.parse(Base64.decode64(params[:payload]).force_encoding("utf-8"))
       payload["name"] # => "question"
 
 See the configuration section for how to setup webhook URLs.
