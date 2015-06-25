@@ -27,13 +27,16 @@ See the configuration section for how to setup the token.
 
 Changes are sent back using a webhook. The webhook retries until it get's a 200 response or 3 hours has passed.
 
-The value of `payload` is JSON:
+The value of `payload` is form encoded JSON:
 
-      payload={"text":"Vad är elixir?","name":"question","locale":"sv","identifier":"help_item_25"}
+      payload=%22text%22%3A%22Vad+%C3%A4r+elixir%3F%22%2C%22name%22%3A%22question%22%2C%22locale%22%3A%22sv%22%2C%22identifier%22%3A%22help_item_25%22%7D"
+
+Which looks like this when not form encoded:
+
+      {"text":"Vad är elixir?","name":"question","locale":"sv","identifier":"help_item_25"}
 
 In rails you can do this:
 
-      # The payload is 7 bit ASCII, but the data is actually UTF-8
       payload = JSON.parse(params[:payload])
       payload["name"] # => "question"
 
