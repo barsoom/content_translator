@@ -104,14 +104,15 @@ See the configuration section for how to setup webhook URLs.
 - [ ] Reliability
   - [x] be able to work though stored requests, e.g. background job (make app restart safe)
   - [x] test stored background jobs feature in prod
-  - [ ] don't report errors until we've retried enough, retrying is expected
-  - [ ] verify that all our content can still be sent to WTI (as their validations evolve over time)
-  - [ ] ensure timeouts in bg jobs means they are retried
-  - [ ] ensure the source language is always posted first to avoid validation issues
+  - [x] verify that all our content can still be sent to WTI (as their validations evolve over time)
+  - [ ] retries
+    - [ ] don't report errors until we've retried enough, retrying is expected
+    - [ ] ensure timeouts in bg jobs means they are retried
+    - [ ] retry posting to the client app as the readme says
+      - explore how messages are handled on worker restart, does it retry? exponential standoff possible?
+    - [ ] retry posting to wti
+    - [ ] ensure the source language is always posted first to avoid validation issues (or: always post in the order it was received, even when retrying)
   - [ ] figure out testing
-  - [ ] retry posting to the client app as the readme says
-    - explore how messages are handled on worker restart, does it retry? exponential standoff possible?
-  - [ ] retry posting to wti
 - [ ] Configure internal chat notifications for honeybadger errors
 
 ### More
