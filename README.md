@@ -118,6 +118,7 @@ See the configuration section for how to setup webhook URLs.
 
 ### More
 
+- [ ] See if %{placeholder} validations could be turned off for content translations (apparently you can skip those in the WTI UI)
 - [ ] Restart the redis process if it fails? Add to supervisor somehow?
 - [ ] Reset redis after each redis test instead of in ContentTranslator at boot
 - [ ] Error reporting that is grouped correctly in honeybadger
