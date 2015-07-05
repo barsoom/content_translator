@@ -1,7 +1,7 @@
 defmodule ContentTranslator.WtiWebhookApiController do
   use ContentTranslator.Web, :api_controller
 
-  alias ContentTranslator.ClientApp
+  alias ContentTranslator.SyncToClientAppWorker
 
   plug :action
 
@@ -25,9 +25,7 @@ defmodule ContentTranslator.WtiWebhookApiController do
   end
 
   defp notify_client_app(payload, user_id) do
-    payload
-    |> extract_data
-    |> ClientApp.update_in_background
+    Toniq.enqueue(SyncToClientAppWorker, extract_data(payload))
   end
 
   defp extract_data(payload) do

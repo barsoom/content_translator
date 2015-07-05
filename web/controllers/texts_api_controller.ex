@@ -2,6 +2,7 @@ defmodule ContentTranslator.TextsApiController do
   use ContentTranslator.Web, :api_controller
 
   alias ContentTranslator.TranslationService
+  alias ContentTranslator.SyncToTranslationServiceWorker
 
   plug :action
 
@@ -23,7 +24,7 @@ defmodule ContentTranslator.TextsApiController do
   end
 
   defp send_to_translation_service(attributes, action) do
-    TranslationService.run_in_background(action, attributes)
+    Toniq.enqueue(SyncToTranslationServiceWorker, action: action, attributes: attributes)
   end
 
   defp filter_out_unknown_keys(map) do

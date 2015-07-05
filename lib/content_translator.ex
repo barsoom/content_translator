@@ -6,26 +6,9 @@ defmodule ContentTranslator do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    redis_client = Exredis.start_using_connection_string(Config.redis_connection_string)
-    Process.register(redis_client, :redis)
-
-    # TODO: do this in a cleaner way, preferabbly after each redis test
-    if Mix.env == :test do
-      Exredis.query(redis_client, [ "FLUSHDB" ])
-    end
-
     children = [
       supervisor(ContentTranslator.Endpoint, []),
-      worker(ContentTranslator.BackgroundJob, []),
-      worker(ContentTranslator.TranslationService, []),
-      worker(ContentTranslator.ClientApp, []),
     ]
-
-    # TODO: do a cleaner "after_app_boot" callback
-    spawn fn ->
-      :timer.sleep 3000
-      ContentTranslator.BackgroundJob.run_previously_enqueued_jobs
-    end
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options

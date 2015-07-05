@@ -24,21 +24,6 @@ defmodule ContentTranslator.TranslationService do
   end
 
   def update(caller, [ action, attributes ], api \\ Config.translation_api) do
-    identifier = attributes[:identifier]
-    locale = attributes[:locale]
-    value = attributes[:value]
-    name = attributes[:name]
-    key = TranslationKey.build(identifier, name)
-
-    case action do
-    :create ->
-      api.create(key, value, locale)
-    :destroy ->
-      api.destroy(key)
-    nil ->
-      raise "Unknown action: #{action}"
-    end
-
     send caller, :done
   end
 end
