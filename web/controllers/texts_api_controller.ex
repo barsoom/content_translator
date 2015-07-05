@@ -1,7 +1,6 @@
 defmodule ContentTranslator.TextsApiController do
   use ContentTranslator.Web, :api_controller
 
-  alias ContentTranslator.TranslationService
   alias ContentTranslator.SyncToTranslationServiceWorker
 
   plug :action
