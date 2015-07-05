@@ -29,8 +29,7 @@ defmodule ContentTranslator.TextsApiController do
 
   defp convert_keys_to_atom(map) do
     map
-    |> Enum.map(fn (tuple) ->
-      [ key, value ] = Tuple.to_list(tuple)
+    |> Enum.map(fn ({key, value}) ->
       { String.to_atom(key), value }
     end)
     |> Enum.into(%{})
