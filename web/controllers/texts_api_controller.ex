@@ -10,20 +10,17 @@ defmodule ContentTranslator.TextsApiController do
 
   defp handle_request(conn, params, action) do
     params
-    |> extract_data
-    |> send_to_translation_service(action)
+    |> extract_data(action)
+    |> Toniq.enqueue_to(SyncToTranslationServiceWorker)
 
     conn |> text("ok")
   end
 
-  defp extract_data(params) do
+  defp extract_data(params, action) do
     params
     |> filter_out_unknown_keys
     |> convert_keys_to_atom
-  end
-
-  defp send_to_translation_service(attributes, action) do
-    Toniq.enqueue(SyncToTranslationServiceWorker, action: action, attributes: attributes)
+    |> add_action(action)
   end
 
   defp filter_out_unknown_keys(map) do
@@ -37,5 +34,10 @@ defmodule ContentTranslator.TextsApiController do
       { String.to_atom(key), value }
     end)
     |> Enum.into(%{})
+  end
+
+  defp add_action(attributes, action) do
+    attributes
+    |> Map.put(:action, action)
   end
 end

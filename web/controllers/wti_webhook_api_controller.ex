@@ -25,7 +25,9 @@ defmodule ContentTranslator.WtiWebhookApiController do
   end
 
   defp notify_client_app(payload, user_id) do
-    Toniq.enqueue(SyncToClientAppWorker, extract_data(payload))
+    payload
+    |> extract_data
+    |> Toniq.enqueue_to(SyncToClientAppWorker)
   end
 
   defp extract_data(payload) do
