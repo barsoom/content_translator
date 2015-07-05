@@ -9,4 +9,4 @@
   "plug": {:hex, :plug, "0.11.1"},
   "poison": {:hex, :poison, "1.3.1"},
   "ranch": {:hex, :ranch, "1.0.0"},
-  "toniq": {:git, "git://github.com/joakimk/toniq.git", "68874cbdd5e6cc9d3923a13c55c715a6da346032", []}}
+  "toniq": {:git, "git://github.com/joakimk/toniq.git", "17fed82686c7b57e8b79b8bf989c0a2194da3a6a", []}}
