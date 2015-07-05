@@ -114,7 +114,7 @@ See the configuration section for how to setup webhook URLs.
     - [ ] retry posting to wti
     - [ ] ensure the source language is always posted first to avoid validation issues (or: always post in the order it was received, even when retrying)
   - [ ] figure out testing for API clients
-- [ ] Configure internal chat notifications for honeybadger errors
+- [ ] Configure internal notifications for honeybadger errors
 
 ### More
 
