@@ -33,11 +33,10 @@ defmodule ContentTranslator.TextsApiController do
       [ key, value ] = Tuple.to_list(tuple)
       { String.to_atom(key), value }
     end)
-    |> Enum.into(%{})
+    |> Enum.into([])
   end
 
   defp add_action(attributes, action) do
-    attributes
-    |> Map.put(:action, action)
+    attributes ++ [ action: action ]
   end
 end
