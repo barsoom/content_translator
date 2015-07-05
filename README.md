@@ -134,6 +134,9 @@ See the configuration section for how to setup webhook URLs.
 
 ## Development
 
+    # Required for tests/server to run.
+    redis-server
+
     mix deps.get
     mix test
     mix phoenix.server
