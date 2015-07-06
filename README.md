@@ -115,10 +115,11 @@ See the configuration section for how to setup webhook URLs.
     - [ ] ensure the source language is always posted first to avoid validation issues (or: always post in the order it was received, even when retrying)
   - [ ] figure out testing for API clients
 - [ ] Configure internal notifications for honeybadger errors
+- [ ] Explore disabling validations for all things we post to WTI. See docs https://webtranslateit.com/en/docs/api/translation/#parameters
+  - Could remove some workarounds, but could also make tests uneditable in WTI
 
 ### More
 
-- [ ] See if %{placeholder} validations could be turned off for content translations (apparently you can skip those in the WTI UI)
 - [ ] Restart the redis process if it fails? Add to supervisor somehow?
 - [ ] Reset redis after each redis test instead of in ContentTranslator at boot
 - [ ] Error reporting that is grouped correctly in honeybadger
