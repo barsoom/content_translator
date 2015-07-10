@@ -4,6 +4,10 @@ defmodule WtiWebhookApiTest do
 
   alias ContentTranslator.FakeClientAppApi
 
+  setup do
+    FakeClientAppApi.reset
+  end
+
   test "notifies the client app about an updated text" do
     post "/api/wti_webhook", format: "json", payload: payload, token: "secret-token"
 
