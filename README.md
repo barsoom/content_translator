@@ -113,6 +113,7 @@ See the configuration section for how to setup webhook URLs.
       - explore how messages are handled on worker restart, does it retry? exponential standoff possible?
     - [ ] retry posting to wti
     - [ ] ensure the source language is always posted first to avoid validation issues (or: always post in the order it was received, even when retrying)
+      - redoing the API as posting an entire string with all translations would fix this
   - [ ] figure out testing for API clients
 - [ ] Configure internal notifications for honeybadger errors
 - [ ] Explore disabling validations for all things we post to WTI. See docs https://webtranslateit.com/en/docs/api/translation/#parameters
@@ -132,6 +133,7 @@ See the configuration section for how to setup webhook URLs.
 - [ ] Don't push anything to WTI that hasn't changed (but if this app does not keep any state that could be hard, could leave that up to the client app)
 - [ ] Would it be easy to setup a Dockerfile and post this to dockerhub? Easy alternative to heroku.
   - How to handle config?
+- [ ] Show background job stats on pages#index
 
 ## Development
 
