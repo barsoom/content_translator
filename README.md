@@ -106,7 +106,7 @@ See the configuration section for how to setup webhook URLs.
   - [x] test stored background jobs feature in prod
   - [x] verify that all our content can still be sent to WTI (as their validations evolve over time)
   - [ ] retries
-    - **note** I plan to solve most of the items below by building [exqueue](https://github.com/joakimk/exqueue)
+    - **note** I plan to solve most of the items below by building [toniq](https://github.com/joakimk/toniq)
     - [ ] don't report errors until we've retried enough, retrying is expected
     - [ ] ensure timeouts in bg jobs means they are retried
     - [ ] retry posting to the client app as the readme says
