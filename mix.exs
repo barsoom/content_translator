@@ -27,7 +27,7 @@ defmodule ContentTranslator.Mixfile do
      {:cowboy, "~> 1.0"},
 
      # a http client and it's and dependency
-     {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.1"},
+     {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2", override: true},
      {:httpotion, "~> 2.0.0"},
 
      {:honeybadger, github: "joakimk/honeybadger"},
