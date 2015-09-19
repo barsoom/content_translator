@@ -15,6 +15,10 @@ config :content_translator, ContentTranslator.Endpoint,
     adapter: Phoenix.PubSub.PG2
   ]
 
+# Ensure we don't collide with any other app using toniq. In development
+# it's very likely you're using the same redis server for multiple apps,
+# and it doesn't hurt to prefix in other envs as well.
+config :toniq, redis_key_prefix: "content_translator:toniq"
 
 # Configures Elixir's Logger
 config :logger, :console,
