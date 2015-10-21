@@ -121,6 +121,7 @@ See the configuration section for how to setup webhook URLs.
 
 ### More
 
+- [ ] See if more metadata could be provided in keys, e.g. category of a thing so you can filter translations (req by nicolas)
 - [ ] Restart the redis process if it fails? Add to supervisor somehow?
 - [ ] Reset redis after each redis test instead of in ContentTranslator at boot
 - [ ] Error reporting that is grouped correctly in honeybadger
