@@ -116,13 +116,10 @@ See the configuration section for how to setup webhook URLs.
   - [ ] figure out testing for API clients
 - [ ] Configure internal notifications for honeybadger errors
 
-### Reliable app
+### More
 
 - [ ] Explore disabling validations for all things we post to WTI. See docs https://webtranslateit.com/en/docs/api/translation/#parameters
   - Could remove some workarounds, but could also make tests uneditable in WTI
-
-### More
-
 - [ ] endpoint.ex has signing_salt and encryption_salt secrets, not used, but should not be there
 - [ ] See if more metadata could be provided in keys, e.g. category of a thing so you can filter translations (req by nicolas)
 - [ ] Prevent ":" in either "identifier" or "name" as that would cause problems with TranslationKey
