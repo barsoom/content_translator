@@ -11,8 +11,8 @@ test:
   override:
     - script/ci/tests.sh
 
-deployment:
-  production:
-    branch: master
-    commands:
-      - script/ci/deploy.sh
+#deployment:
+#  production:
+#    branch: master
+#    commands:
+#      - script/ci/deploy.sh
