@@ -105,7 +105,7 @@ By the time you read this there might be an web based admin UI for toniq you cou
 
 - [x] Add instructions for what to do when an error occurs, how to retry jobs, etc.
 - [x] Add instructions for keeping this app's dependencies up to date
-- [ ] Add app to code review tool
+- [x] Add app to code review tool
 - [ ] Cleanup this readme
 - [ ] Ask for an initial review of the entire thing, anything confusing, etc.
 - [ ] Configure internal notifications for honeybadger errors
