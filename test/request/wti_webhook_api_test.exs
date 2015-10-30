@@ -9,7 +9,7 @@ defmodule WtiWebhookApiTest do
   end
 
   test "notifies the client app about an updated text" do
-    post "/api/wti_webhook", format: "json", payload: payload, token: "secret-token"
+    post "/api/wti_webhook", payload: payload, token: "secret-token"
 
     wait_for_the_translation_update_to_sent
 
@@ -17,7 +17,7 @@ defmodule WtiWebhookApiTest do
   end
 
   test "ignores changes not made by users to avoid infinite loops" do
-    post "/api/wti_webhook", format: "json", payload: non_user_payload, token: "secret-token"
+    post "/api/wti_webhook", payload: non_user_payload, token: "secret-token"
 
     wait_for_the_translation_update_to_sent
 
@@ -25,7 +25,7 @@ defmodule WtiWebhookApiTest do
   end
 
   test "updating a text with an invalid token fails" do
-    response = post "/api/wti_webhook", format: "json", payload: payload, token: "invalid-secret-token"
+    response = post "/api/wti_webhook", payload: payload, token: "invalid-secret-token"
     assert response.status == 403
   end
 

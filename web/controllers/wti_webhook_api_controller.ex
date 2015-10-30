@@ -3,7 +3,7 @@ defmodule ContentTranslator.WtiWebhookApiController do
 
   alias ContentTranslator.SyncToClientAppWorker
 
-  def create(conn, %{ "format" => "json", "payload" => payload }) do
+  def create(conn, %{ "payload" => payload }) do
     payload
     |> JSON.parse
     |> process
