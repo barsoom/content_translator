@@ -121,6 +121,7 @@ See the configuration section for how to setup webhook URLs.
 
 ### More
 
+- [ ] endpoint.ex has signing_salt and encryption_salt secrets, not used, but should not be there
 - [ ] See if more metadata could be provided in keys, e.g. category of a thing so you can filter translations (req by nicolas)
 - [ ] Restart the redis process if it fails? Add to supervisor somehow?
 - [ ] Reset redis after each redis test instead of in ContentTranslator at boot

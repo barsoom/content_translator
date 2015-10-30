@@ -3,8 +3,6 @@ defmodule ContentTranslator.TextsApiController do
 
   alias ContentTranslator.SyncToTranslationServiceWorker
 
-  plug :action
-
   def create(conn, params), do: handle_request(conn, params, :create)
   def destroy(conn, params), do: handle_request(conn, params, :destroy)
 
