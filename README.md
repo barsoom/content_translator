@@ -98,7 +98,7 @@ See the configuration section for how to setup webhook URLs.
   - [x] don't do anything when the webhook is a result of a update from this app
   - [x] post to the client app
 
-### Before we can use and support this internally
+### Reliable app
 
 - [x] Error reporting to honeybadger
 - [ ] Reliability
@@ -110,27 +110,31 @@ See the configuration section for how to setup webhook URLs.
     - [ ] don't report errors until we've retried enough, retrying is expected
     - [ ] ensure timeouts in bg jobs means they are retried
     - [ ] retry posting to the client app as the readme says
+      - explore how messages are handled on worker restart, does it retry? exponential standoff possible?
     - [ ] retry posting to wti
     - [ ] ensure the source language is always posted first to avoid validation issues (or: always post in the order it was received, even when retrying)
       - redoing the API as posting an entire string with all translations would fix this
   - [ ] figure out testing for API clients
 - [ ] Configure internal notifications for honeybadger errors
+- [ ] Explore disabling validations for all things we post to WTI. See docs https://webtranslateit.com/en/docs/api/translation/#parameters
+  - Could remove some workarounds, but could also make tests uneditable in WTI
 
 ### More
 
-- [ ] Explore disabling validations for all things we post to WTI. See docs https://webtranslateit.com/en/docs/api/translation/#parameters
-  - Could remove some workarounds, but could also make tests uneditable in WTI
-- [ ] endpoint.ex has signing_salt and encryption_salt secrets, not used, but should not be there
 - [ ] See if more metadata could be provided in keys, e.g. category of a thing so you can filter translations (req by nicolas)
+- [ ] Restart the redis process if it fails? Add to supervisor somehow?
+- [ ] Reset redis after each redis test instead of in ContentTranslator at boot
+- [ ] Error reporting that is grouped correctly in honeybadger
 - [ ] Prevent ":" in either "identifier" or "name" as that would cause problems with TranslationKey
 - [ ] Add step to readme for removing the default postgres DB so you won't think it might be used
+- [x] Refactor WtiTranslationApi. The request parts could probably live elsewhere.
 - [ ] Screenshots of WTI in readme, diff handling, etc
 - [ ] Show app status on internal dashboard
 - [ ] Open source generic parts of the ruby client
 - [ ] Don't push anything to WTI that hasn't changed (but if this app does not keep any state that could be hard, could leave that up to the client app)
 - [ ] Would it be easy to setup a Dockerfile and post this to dockerhub? Easy alternative to heroku.
   - How to handle config?
-- [ ] Show background job stats on pages#index or use a future toniq admin web ui
+- [ ] Show background job stats on pages#index
 
 ## Development
 

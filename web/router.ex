@@ -1,5 +1,5 @@
 defmodule ContentTranslator.Router do
-  use ContentTranslator.Web, :router
+  use Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ~w(html)

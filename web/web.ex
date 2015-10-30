@@ -16,13 +16,11 @@ defmodule ContentTranslator.Web do
     quote do
       use Phoenix.View, root: "web/templates"
 
-      # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
-
-      # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
-
+      # Import URL helpers from the router
       import ContentTranslator.Router.Helpers
+
+      # Import all HTML functions (forms, tags, etc)
+      use Phoenix.HTML
     end
   end
 
@@ -30,6 +28,7 @@ defmodule ContentTranslator.Web do
     quote do
       use Phoenix.Controller
 
+      # Import URL helpers from the router
       import ContentTranslator.Router.Helpers
     end
   end
@@ -51,12 +50,6 @@ defmodule ContentTranslator.Web do
       defp deny_and_halt(conn) do
         conn |> send_resp(403, "Denied") |> halt
       end
-    end
-  end
-
-  def router do
-    quote do
-      use Phoenix.Router
     end
   end
 
