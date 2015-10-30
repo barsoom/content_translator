@@ -116,7 +116,10 @@ See the configuration section for how to setup webhook URLs.
 - [ ] Configure internal notifications for honeybadger errors
 - [ ] Add instructions for what to do when an error occurs, how to retry jobs, etc.
 - [ ] Add instructions for keeping this app's dependencies up to date
+- [ ] Add app to code review tool
 - [ ] Cleanup this readme
+- [ ] Ask for an initial review of the entire thing, anything confusing, etc.
+- [ ] Invite more people to use it for a trial period
 
 ### More
 
