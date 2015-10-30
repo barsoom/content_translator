@@ -97,6 +97,38 @@ If the sync fails, either from the application to WTI, or the other way around, 
 
 By the time you read this there might be an web based admin UI for toniq you could use instead, [check the project](https://github.com/joakimk/toniq).
 
+## Development
+
+    # Required for tests/server to run.
+    redis-server
+
+    mix deps.get
+    mix test
+    mix phoenix.server
+
+### Maintenance
+
+To keep this app up-to-date, periodically update dependencies, run tests, push, deploy, and manually check that it works too.
+
+    mix deps.update [dependency]
+    # or: mix deps.update --all
+
+    mix test
+
+Also update erlang and elixir in elixir\_buildpack.config as new stable versions are released.
+
+### Gotchas
+
+All strings are stripped of whitespace at the end because WTI won't accept strings ending in newlines.
+
+### Seeing 406 errors from WTI?
+
+WTI does some validation. One example of this is that the translated text must end with a newline if the source test does. One way of getting around this is to not let the user edit the translated text in the source system. If all translations are done in WTI the user has to deal with it's validations before being able to save.
+
+I've asked the WTI maintainer to return the actual validation error in the API response. At the time of writing I belive he has, but I haven't had the time to check.
+
+
+
 ## TODO
 
 ### Before we can use and support this internally
@@ -135,36 +167,6 @@ By the time you read this there might be an web based admin UI for toniq you cou
 - [ ] Would it be easy to setup a Dockerfile and post this to dockerhub? Easy alternative to heroku.
   - How to handle config?
 - [ ] Show background job stats on pages#index or use a future toniq admin web ui
-
-## Development
-
-    # Required for tests/server to run.
-    redis-server
-
-    mix deps.get
-    mix test
-    mix phoenix.server
-
-### Maintenance
-
-To keep this app up-to-date, periodically update dependencies, run tests, push, deploy, and manually check that it works too.
-
-    mix deps.update [dependency]
-    # or: mix deps.update --all
-
-    mix test
-
-Also update erlang and elixir in elixir\_buildpack.config as new stable versions are released.
-
-### Gotchas
-
-All strings are stripped of whitespace at the end because WTI won't accept strings ending in newlines.
-
-### Seeing 406 errors from WTI?
-
-WTI does some validation. One example of this is that the translated text must end with a newline if the source test does. One way of getting around this is to not let the user edit the translated text in the source system. If all translations are done in WTI the user has to deal with it's validations before being able to save.
-
-I've asked the WTI maintainer to return the actual validation error in the API response. At the time of writing I belive he has, but I haven't had the time to check.
 
 ### Credits and license
 
