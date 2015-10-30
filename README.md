@@ -76,12 +76,35 @@ See the configuration section for how to setup webhook URLs.
 0. Change something in your client app, see that it appears in WTI
 0. Translate something in WTI and see if the content is updated in your app
 
+## What to do when an error occurs with the sync
+
+If the sync fails, either from the application to WTI, or the other way around, then you will have to decide what to do about the failed jobs.
+
+    heroku run iex -S mix
+
+    # List all failed jobs
+    iex> Toniq.failed_jobs
+
+    # Pick out the first failed job
+    iex> job = Toniq.failed_jobs |> hd
+
+    # Retry a job
+    iex> Toniq.retry(job)
+
+    # Delete a job
+    iex> Toniq.delete(job)
+
+    # Retry all jobs
+    iex> Toniq.failed_jobs |> Enum.each fn (job) -> Toniq.retry(job) end
+
+By the time you read this there might be an web based admin UI for toniq you could use instead, [check the project](https://github.com/joakimk/toniq).
+
 ## TODO
 
 ### Before we can use and support this internally
 
-- [ ] Add instructions for what to do when an error occurs, how to retry jobs, etc.
-- [ ] Add instructions for keeping this app's dependencies up to date
+- [x] Add instructions for what to do when an error occurs, how to retry jobs, etc.
+- [x] Add instructions for keeping this app's dependencies up to date
 - [ ] Add app to code review tool
 - [ ] Cleanup this readme
 - [ ] Ask for an initial review of the entire thing, anything confusing, etc.
@@ -122,6 +145,17 @@ See the configuration section for how to setup webhook URLs.
     mix deps.get
     mix test
     mix phoenix.server
+
+### Maintenance
+
+To keep this app up-to-date, periodically update dependencies, run tests, push, deploy, and manually check that it works too.
+
+    mix deps.update [dependency]
+    # or: mix deps.update --all
+
+    mix test
+
+Also update erlang and elixir in elixir\_buildpack.config as new stable versions are released.
 
 ### Gotchas
 
