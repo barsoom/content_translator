@@ -78,52 +78,26 @@ See the configuration section for how to setup webhook URLs.
 
 ## TODO
 
-### Minimal app
-
-- [x] Write configuration section docs
-- [x] Get CI and deploy working
-- [x] Get automatic deploy working
-- [x] Set up a way to get WTI webhooks to the dev box
-- [x] Authentication
-- [x] handle text update
-  - [x] Set up client app in dev to post content to this app
-  - [x] Figure out how to call the WTI API in elixir
-  - [x] Handle empty texts (seems the api defaults the text to the key-name?)
-- [x] ensure all our texts work, next to debug: help_item_31, de
-- [x] handle text delete
-- [x] handle wti webhooks
-  - [x] auth
-  - [x] consider removing redis, if the key name could be reliable enough, maybe `: ` between indentifier and name, like `help_item_31: question`. in that case, refuse input of ":" in either field
-  - [x] be able to parse the request
-  - [x] don't do anything when the webhook is a result of a update from this app
-  - [x] post to the client app
-
 ### Before we can use and support this internally
 
-- [x] Error reporting to honeybadger
-- [ ] Reliability
-  - [x] be able to work though stored requests, e.g. background job (make app restart safe)
-  - [x] test stored background jobs feature in prod
-  - [x] verify that all our content can still be sent to WTI (as their validations evolve over time)
-  - [ ] retries
-    - **note** I plan to solve most of the items below by building [toniq](https://github.com/joakimk/toniq)
-    - [ ] don't report errors until we've retried enough, retrying is expected
-    - [ ] ensure timeouts in bg jobs means they are retried
-    - [ ] retry posting to the client app as the readme says
-    - [ ] retry posting to wti
-    - [ ] ensure the source language is always posted first to avoid validation issues (or: always post in the order it was received, even when retrying)
-      - redoing the API as posting an entire string with all translations would fix this
-- [ ] Configure internal notifications for honeybadger errors
 - [ ] Add instructions for what to do when an error occurs, how to retry jobs, etc.
 - [ ] Add instructions for keeping this app's dependencies up to date
 - [ ] Add app to code review tool
 - [ ] Cleanup this readme
 - [ ] Ask for an initial review of the entire thing, anything confusing, etc.
+- [ ] Configure internal notifications for honeybadger errors
 - [ ] Invite more people to use it for a trial period
+- [ ] Remove anything from readme that isn't in the tool and remove readme-driven-dev tag
+- [ ] Release 1.0
+
+### Prio
+
+- [ ] ensure the source language is always posted first to avoid validation issues
+  - redoing the API as posting an entire string with all translations would fix this
+  - **note** It might just work most of the time, and when it does not retries will probably work around it. Haven't seen any errors from this in a while.
 
 ### More
 
-- [ ] Release 1.0
 - [ ] Use the official honeybadger client (mine works, but it's probably not as fully featured)
 - [ ] Figure out testing for API clients
 - [ ] Explore disabling validations for all things we post to WTI. See docs https://webtranslateit.com/en/docs/api/translation/#parameters
