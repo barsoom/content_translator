@@ -1,6 +1,4 @@
-# NOTE: Readme Driven Development: May not do what the readme says yet.
-
-**Status**: We are sending some content both ways between WTI and a production system. There are some error handling, it has error reporting (to honeybadger) and messages are persisted, but it's not quite 1.0 yet.
+**Status**: Used in production. Will soon be released as 1.0.
 
 [CircleCi](https://circleci.com/gh/barsoom/content_translator)
 
@@ -25,7 +23,7 @@ See the configuration section for how to setup the token.
 
 ### Receiving changes from this app
 
-Changes are sent back using a webhook. The webhook retries until it get's a 200 response or 3 hours has passed.
+Changes are sent back using a webhook. The webhook retries until it get's a 200 response or a few minutes has passed, at which point you can manually trigger more retries (see more on error handling below). No update sent though this app is lost unless you manually choose to delete it.
 
 The value of `payload` is form encoded JSON:
 
@@ -106,7 +104,7 @@ By the time you read this there might be an web based admin UI for toniq you cou
 - [x] Add instructions for what to do when an error occurs, how to retry jobs, etc.
 - [x] Add instructions for keeping this app's dependencies up to date
 - [x] Add app to code review tool
-- [ ] Cleanup this readme
+- [x] Cleanup this readme
 - [ ] Ask for an initial review of the entire thing, anything confusing, etc.
 - [ ] Configure internal notifications for honeybadger errors
 - [ ] Invite more people to use it for a trial period
@@ -121,6 +119,7 @@ By the time you read this there might be an web based admin UI for toniq you cou
 
 ### More
 
+- [ ] Check if the errors that are returned for WTI validations are sent to honeybadger in a meaningful way
 - [ ] Use the official honeybadger client (mine works, but it's probably not as fully featured)
 - [ ] Figure out testing for API clients
 - [ ] Explore disabling validations for all things we post to WTI. See docs https://webtranslateit.com/en/docs/api/translation/#parameters
@@ -165,7 +164,7 @@ All strings are stripped of whitespace at the end because WTI won't accept strin
 
 WTI does some validation. One example of this is that the translated text must end with a newline if the source test does. One way of getting around this is to not let the user edit the translated text in the source system. If all translations are done in WTI the user has to deal with it's validations before being able to save.
 
-I've asked the WTI maintainer to return the actual validation error in the API response. At the time of writing it just says that something is wrong.
+I've asked the WTI maintainer to return the actual validation error in the API response. At the time of writing I belive he has, but I haven't had the time to check.
 
 ### Credits and license
 
