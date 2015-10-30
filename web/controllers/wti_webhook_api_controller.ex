@@ -3,8 +3,6 @@ defmodule ContentTranslator.WtiWebhookApiController do
 
   alias ContentTranslator.SyncToClientAppWorker
 
-  plug :action
-
   def create(conn, %{ "format" => "json", "payload" => payload }) do
     payload
     |> JSON.parse
