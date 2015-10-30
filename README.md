@@ -113,11 +113,16 @@ See the configuration section for how to setup webhook URLs.
     - [ ] retry posting to wti
     - [ ] ensure the source language is always posted first to avoid validation issues (or: always post in the order it was received, even when retrying)
       - redoing the API as posting an entire string with all translations would fix this
-  - [ ] figure out testing for API clients
 - [ ] Configure internal notifications for honeybadger errors
+- [ ] Add instructions for what to do when an error occurs, how to retry jobs, etc.
+- [ ] Add instructions for keeping this app's dependencies up to date
+- [ ] Cleanup this readme
 
 ### More
 
+- [ ] Release 1.0
+- [ ] Use the official honeybadger client (mine works, but it's probably not as fully featured)
+- [ ] Figure out testing for API clients
 - [ ] Explore disabling validations for all things we post to WTI. See docs https://webtranslateit.com/en/docs/api/translation/#parameters
   - Could remove some workarounds, but could also make tests uneditable in WTI
 - [ ] endpoint.ex has signing_salt and encryption_salt secrets, not used, but should not be there
