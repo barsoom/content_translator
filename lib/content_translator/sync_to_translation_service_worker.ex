@@ -1,5 +1,6 @@
 defmodule ContentTranslator.SyncToTranslationServiceWorker do
-  use Toniq.Worker
+  # concurrency only limited to be nice to WTI
+  use Toniq.Worker, max_concurrency: 3
 
   def perform(%{action: :destroy, identifier: identifier, name: name}) do
     key(identifier, name)
