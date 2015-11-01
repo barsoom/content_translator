@@ -40,7 +40,7 @@ defmodule ContentTranslator.Mixfile do
 
       {:honeybadger, github: "joakimk/honeybadger"},
       {:exredis, "0.1.3"},
-      {:toniq, github: "joakimk/toniq"},
+      {:toniq, "~> 1.0-rc.1"},
     ]
   end
 end
