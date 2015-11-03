@@ -6,7 +6,7 @@ config :content_translator, ContentTranslator.Endpoint,
   client_app_api: ContentTranslator.FakeClientAppApi,
   auth_token: "secret-token"
 
-config :toniq, redis_url: "redis://localhost:6379/1"
+config :toniq, redis_url: (System.get_env("REDIS_URL") || "redis://localhost:6379/0") <> "/1"
 
 # Print only warnings and errors during test
 config :logger, level: :warn

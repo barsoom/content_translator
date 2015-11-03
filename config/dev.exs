@@ -10,7 +10,7 @@ config :content_translator, ContentTranslator.Endpoint,
   wti_project_token: System.get_env("WTI_PROJECT_TOKEN"),
   client_app_webhook_url: System.get_env("CLIENT_APP_WEBHOOK_URL")
 
-config :toniq, redis_url: "redis://localhost:6379/0"
+config :toniq, redis_url: System.get_env("REDIS_URL") || "redis://localhost:6379/0"
 
 # Enables code reloading for development
 config :phoenix, :code_reloader, true
