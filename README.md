@@ -87,6 +87,11 @@ If the sync fails, either from the application to WTI, or the other way around, 
 
     # Pick out the first failed job
     iex> job = Toniq.failed_jobs |> hd
+    
+    # Inspect job attributes
+    iex> job.arguments
+    iex> job.worker
+    iex> job.error
 
     # Retry a job
     iex> Toniq.retry(job)
