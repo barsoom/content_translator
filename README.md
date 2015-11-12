@@ -127,7 +127,9 @@ WTI does some validation. One example of this is that the translated text must e
 
 I've asked the WTI maintainer to return the actual validation error in the API response. At the time of writing I belive he has, but I haven't had the time to check.
 
+## Heroku
 
+This can be run on a free heroku dyno since it boots fast enough to process new requests from WTI without timeouts. Usually you don't have new translations coming in all day long either, so it can sleep most of the time.
 
 ## TODO
 
