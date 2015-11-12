@@ -51,6 +51,8 @@ See the configuration section for how to setup webhook URLs.
 
 ### Deploy this app to heroku
 
+this app can be run on a free heroku dyno since it boots fast enough to process new requests from WTI without timeouts. Usually you don't have new translations coming in all day long either, so it can sleep most of the time.
+
     heroku apps:create some-content-translator --region eu --buildpack https://github.com/HashNuke/heroku-buildpack-elixir.git
     heroku config:set MIX_ENV=prod
     heroku config:set HOSTNAME=some-content-translator.herokuapp.com
@@ -126,10 +128,6 @@ All strings are stripped of whitespace at the end because WTI won't accept strin
 WTI does some validation. One example of this is that the translated text must end with a newline if the source test does. One way of getting around this is to not let the user edit the translated text in the source system. If all translations are done in WTI the user has to deal with it's validations before being able to save.
 
 I've asked the WTI maintainer to return the actual validation error in the API response. At the time of writing I belive he has, but I haven't had the time to check.
-
-## Heroku
-
-This can be run on a free heroku dyno since it boots fast enough to process new requests from WTI without timeouts. Usually you don't have new translations coming in all day long either, so it can sleep most of the time.
 
 ## TODO
 
