@@ -140,7 +140,7 @@ I've asked the WTI maintainer to return the actual validation error in the API r
 - [x] Ask for an initial review of the entire thing, anything confusing, etc.
 - [x] Configure internal notifications for honeybadger errors
 - [x] Remove anything from readme that isn't in the tool and remove readme-driven-dev tag
-- [ ] When devs has gotten a chance to look at it: Invite more people to use it for a trial period
+- [x] When devs has gotten a chance to look at it: Invite more people to use it for a trial period
 - [ ] After feedback: Release 1.0
 
 ### Prio
