@@ -1,4 +1,4 @@
-**Status**: Used in production. Will soon be released as 1.0.
+**Status**: Used in production.
 
 [CircleCi](https://circleci.com/gh/barsoom/content_translator)
 
@@ -141,7 +141,7 @@ I've asked the WTI maintainer to return the actual validation error in the API r
 - [x] Configure internal notifications for honeybadger errors
 - [x] Remove anything from readme that isn't in the tool and remove readme-driven-dev tag
 - [x] When devs has gotten a chance to look at it: Invite more people to use it for a trial period
-- [ ] After feedback: Release 1.0
+- [x] After feedback: Release 1.0
 
 ### Prio
 
