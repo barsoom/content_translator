@@ -80,10 +80,18 @@ This app can be run on a free heroku dyno since it boots fast enough to process 
 
 If the sync fails, either from the application to WTI, or the other way around, then you will have to decide what to do about the failed jobs.
 
+If the error is "req_timedout", it should be safe to retry (TODO: improve handling of timeouts so we don't have to). For other types of errors, figure it out and update these docs.
+
+These are some helpful commands:
+
+    # Open a production console
     heroku run iex -S mix
 
     # List all failed jobs
     iex> Toniq.failed_jobs
+    
+    # See the error of all failed jobs
+    Toniq.failed_jobs |> Enum.map &(&1.error)
 
     # Pick out the first failed job
     iex> job = Toniq.failed_jobs |> hd
