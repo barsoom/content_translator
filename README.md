@@ -46,6 +46,8 @@ When you visit a link like this:
 
 You will be redirected to the WTI string for that key. The current implementation makes synchronous calls to the WTI API to figure out which `string_id` to use so it might fail if the WTI API is down.
 
+This could be fixed if needed by keeping a database in this app how `key` map to `string_id`, but for now let's keep it simple.
+
 ## Set up
 
 ### Set up a project in WebTranslateIt
