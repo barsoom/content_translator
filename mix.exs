@@ -38,7 +38,7 @@ defmodule ContentTranslator.Mixfile do
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2", override: true},
       {:httpotion, "~> 2.0.0"},
 
-      {:honeybadger, github: "joakimk/honeybadger"},
+      {:honeybadger, "~> 0.3"},
       {:exredis, "0.1.3"},
       {:toniq, "~> 1.0"},
     ]
