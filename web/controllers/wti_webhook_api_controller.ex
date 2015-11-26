@@ -29,12 +29,9 @@ defmodule ContentTranslator.WtiWebhookApiController do
   end
 
   defp extract_data(payload) do
-    [ identifier, name ] = TranslationKey.parse(payload["translation"]["string"]["key"])
-
     %{
-      identifier: identifier,
-      name: name,
-      text: payload["translation"]["text"],
+      key: payload["translation"]["string"]["key"],
+      value: payload["translation"]["text"],
       locale: payload["locale"]
     }
   end

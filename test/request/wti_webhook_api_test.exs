@@ -13,7 +13,7 @@ defmodule WtiWebhookApiTest do
 
     wait_for_the_translation_update_to_sent
 
-    assert FakeClientAppApi.last_update == %{ identifier: "help_item_20", name: "question", text: "English text", locale: "en" }
+    assert FakeClientAppApi.last_update == %{ key: "help_item_20: question", value: "English text", locale: "en" }
   end
 
   test "ignores changes not made by users to avoid infinite loops" do
