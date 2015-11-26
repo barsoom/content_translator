@@ -38,7 +38,7 @@ In rails you can do this:
 
 See the configuration section for how to setup webhook URLs.
 
-### Linking to a string on WTI though this app
+### Linking to a string on WTI through this app
 
 When you visit a link like this:
 
