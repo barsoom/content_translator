@@ -8,7 +8,8 @@ config :content_translator, ContentTranslator.Endpoint,
   client_app_api: ContentTranslator.ClientAppApi,
   auth_token: "secret-token",
   wti_project_token: System.get_env("WTI_PROJECT_TOKEN"),
-  client_app_webhook_url: System.get_env("CLIENT_APP_WEBHOOK_URL")
+  client_app_webhook_url: System.get_env("CLIENT_APP_WEBHOOK_URL"),
+  wti_project_id: System.get_env("WTI_PROJECT_ID")
 
 config :toniq, redis_url: System.get_env("REDIS_URL") || "redis://localhost:6379/0"
 

@@ -3,9 +3,9 @@ defmodule TextsTest do
   import Plug.Test
 
   test "redirecting to WTI" do
-    response = get "/show", key: "help_item_25: question", from: "sv", to: "de"
+    response = get "/search", query: "help_item_25:", from: "sv", to: "de"
     assert response.status == 302
-    assert response.resp_body =~ "https://webtranslateit.com/projects/1234/locales/sv..de/strings/4567"
+    assert response.resp_body =~ "https://webtranslateit.com/projects/1234/locales/sv..de/strings?s=help_item_25:"
   end
 
   defp get(url, params), do: call(:get, url, params)

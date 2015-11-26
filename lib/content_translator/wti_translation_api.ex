@@ -14,15 +14,6 @@ defmodule ContentTranslator.WtiTranslationApi do
     |> delete_when_a_string_exists
   end
 
-  def url(key, from, to) do
-    string = find_existing_strings(key) |> hd
-
-    string_id = Map.get(string, "id")
-    project_id = Map.get(string, "project") |> Map.get("id")
-
-    "https://webtranslateit.com/projects/#{project_id}/locales/#{from}..#{to}/strings/#{string_id}"
-  end
-
   defp delete_when_a_string_exists([]) do
     # no-op when there is no string to delete
   end

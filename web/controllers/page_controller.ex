@@ -6,10 +6,11 @@ defmodule ContentTranslator.PageController do
   end
 
   def redirect_to_translation_service(conn, params) do
-    url = translation_api.url(params["key"], params["from"], params["to"])
+    url = "https://webtranslateit.com/projects/#{project_id}/locales/#{params["from"]}..#{params["to"]}/strings?s=#{params["query"]}"
     redirect(conn, external: url)
   end
 
   defp translation_api, do: Config.translation_api
+  defp project_id, do: Config.wti_project_id
 end
 
