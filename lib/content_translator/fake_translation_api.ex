@@ -19,6 +19,10 @@ defmodule ContentTranslator.FakeTranslationApi do
     end)
   end
 
+  def url(key, source_locale, destination_locale) do
+    "https://webtranslateit.com/projects/1234/locales/#{source_locale}..#{destination_locale}/strings/4567"
+  end
+
   defp create_or_update(key, value, locale, _known_entry = nil) do
     Agent.update(pid, fn(list) ->
       list
