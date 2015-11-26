@@ -10,17 +10,6 @@ defmodule TextsApiTest do
   end
 
   test "creating a text" do
-    response = post "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "secret-token"
-    assert response.status == 200
-
-    wait_for_the_translation_to_be_processed
-
-    assert FakeTranslationApi.texts == [
-      %{ key: "help_item_25: question", value: "What is elixir?", locale: "en", id: 1 }
-    ]
-  end
-
-  test "creating a text using the new-simplified-api" do
     response = post "/api/texts", key: "help_item_25: question", value: "What is elixir?", locale: "en", token: "secret-token"
     assert response.status == 200
 
@@ -32,10 +21,10 @@ defmodule TextsApiTest do
   end
 
   test "updating a text does not create duplicates" do
-    post! "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "secret-token"
+    post! "/api/texts", key: "help_item_25: question", value: "What is elixir?", locale: "en", token: "secret-token"
     wait_for_the_translation_to_be_processed
 
-    post! "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?!", locale: "en", token: "secret-token"
+    post! "/api/texts", key: "help_item_25: question", value: "What is elixir?!", locale: "en", token: "secret-token"
     wait_for_the_translation_to_be_processed
 
     assert FakeTranslationApi.texts == [
@@ -44,31 +33,11 @@ defmodule TextsApiTest do
   end
 
   test "creating a text with an invalid token fails" do
-    response = post "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "invalid-secret-token"
+    response = post "/api/texts", key: "help_item_25: question", value: "What is elixir?", locale: "en", token: "invalid-secret-token"
     assert response.status == 403
   end
 
   test "deleting a text" do
-    post! "/api/texts", identifier: "help_item_25", name: "question", value: "What is elixir?", locale: "en", token: "secret-token"
-    wait_for_the_translation_to_be_processed
-    post! "/api/texts", identifier: "help_item_25", name: "answer", value: "A...", locale: "en", token: "secret-token"
-    wait_for_the_translation_to_be_processed
-
-    response = delete "/api/texts", identifier: "help_item_25", name: "question", token: "secret-token"
-    assert response.status == 200
-
-    # A second delete is a no-op
-    response = delete "/api/texts", identifier: "help_item_25", name: "question", token: "secret-token"
-    assert response.status == 200
-
-    wait_for_the_translation_to_be_processed
-
-    assert FakeTranslationApi.texts == [
-      %{ key: "help_item_25: answer", value: "A...", locale: "en", id: 2 }
-    ]
-  end
-
-  test "deleting a text using the new-simplified-api" do
     post! "/api/texts", key: "help_item_25: question", value: "What is elixir?", locale: "en", token: "secret-token"
     wait_for_the_translation_to_be_processed
     post! "/api/texts", key: "help_item_25: answer", value: "A...", locale: "en", token: "secret-token"

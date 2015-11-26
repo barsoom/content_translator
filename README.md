@@ -16,8 +16,8 @@ Content is sent to this app by HTTP calls. Create and update is POST, destroy is
 
 These calls can be made multiple times without causing any problems, so design your app to continue retrying the requests until you get a 200 response (e.g. instead of a timeout).
 
-    POST   /api/texts token=authtoken identifier="help_item_25" name="question" value="What is elixir?" locale=en
-    DELETE /api/texts token=authtoken identifier="help_item_25" name="question"
+    POST   /api/texts token=authtoken key="help_item_25: question" value="What is elixir?" locale=en
+    DELETE /api/texts token=authtoken key="help_item_25: question"
 
 See the configuration section for how to setup the token.
 
@@ -25,13 +25,11 @@ See the configuration section for how to setup the token.
 
 Changes are sent back using a webhook. The webhook retries until it get's a 200 response or a few minutes has passed, at which point you can manually trigger more retries (see more on error handling below). No update sent though this app is lost unless you manually choose to delete it.
 
-The value of `payload` is form encoded JSON:
-
-      payload=%22text%22%3A%22Vad+%C3%A4r+elixir%3F%22%2C%22name%22%3A%22question%22%2C%22locale%22%3A%22sv%22%2C%22identifier%22%3A%22help_item_25%22%7D"
+The value of `payload` is form encoded JSON.
 
 Which looks like this when not form encoded:
 
-      {"text":"Vad är elixir?","name":"question","locale":"sv","identifier":"help_item_25"}
+      {"key":"help_item_25: question","value":"Vad är elixir?","locale":"sv"}
 
 In rails you can do this:
 
@@ -171,7 +169,6 @@ I've asked the WTI maintainer to return the actual validation error in the API r
   - Could remove some workarounds, but could also make tests uneditable in WTI
 - [ ] endpoint.ex has signing_salt and encryption_salt secrets, not used, but should not be there
 - [ ] See if more metadata could be provided in keys, e.g. category of a thing so you can filter translations (req by nicolas)
-- [ ] Prevent ":" in either "identifier" or "name" as that would cause problems with TranslationKey
 - [ ] Add step to readme for removing the default postgres DB so you won't think it might be used
 - [ ] Screenshots of WTI in readme, diff handling, etc
 - [ ] Show app status on internal dashboard
