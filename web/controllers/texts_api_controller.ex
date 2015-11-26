@@ -22,7 +22,7 @@ defmodule ContentTranslator.TextsApiController do
   end
 
   defp filter_out_unknown_keys(map) do
-    map |> Map.take([ "identifier", "name", "value", "locale" ])
+    map |> Map.take([ "key", "identifier", "name", "value", "locale" ])
   end
 
   defp convert_keys_to_atom(map) do
