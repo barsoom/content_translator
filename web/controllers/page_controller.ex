@@ -6,7 +6,7 @@ defmodule ContentTranslator.PageController do
   end
 
   def redirect_to_translation_service(conn, params) do
-    url = translation_api.url(params["key"], params["source_locale"], params["destination_locale"])
+    url = translation_api.url(params["key"], params["from"], params["to"])
     redirect(conn, external: url)
   end
 

@@ -42,7 +42,7 @@ See the configuration section for how to setup webhook URLs.
 
 When you visit a link like this:
 
-    /show?key=somekey&source_locale=en&destination_locale=de
+    /show?key=somekey&from=en&to=de
 
 You will be redirected to the WTI string for that key. The current implementation makes synchronous calls to the WTI API to figure out which `string_id` to use so it might fail if the WTI API is down.
 

@@ -3,7 +3,7 @@ defmodule TextsTest do
   import Plug.Test
 
   test "redirecting to WTI" do
-    response = get "/show", key: "help_item_25: question", source_locale: "sv", destination_locale: "de"
+    response = get "/show", key: "help_item_25: question", from: "sv", to: "de"
     assert response.status == 302
     assert response.resp_body =~ "https://webtranslateit.com/projects/1234/locales/sv..de/strings/4567"
   end
