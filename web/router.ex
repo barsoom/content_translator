@@ -1,6 +1,5 @@
 defmodule ContentTranslator.Router do
   use ContentTranslator.Web, :router
-  use Honeybadger.Plug
 
   pipeline :browser do
     plug :accepts, ~w(html)
