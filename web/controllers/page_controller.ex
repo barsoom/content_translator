@@ -5,6 +5,10 @@ defmodule ContentTranslator.PageController do
     html conn, "This is an API-only app, see the docs at <a href='https://github.com/barsoom/content_translator'>https://github.com/barsoom/content_translator</a>."
   end
 
+  def revision(conn, _params) do
+    conn |> text(System.get_env("GIT_COMMIT"))
+  end
+
   def redirect_to_translation_service(conn, params) do
     url = "https://webtranslateit.com/projects/#{project_id}/locales/#{params["from"]}..#{params["to"]}/strings?s=#{params["query"]}"
     redirect(conn, external: url)

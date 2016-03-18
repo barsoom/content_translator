@@ -9,6 +9,9 @@ defmodule ContentTranslator.Router do
     plug :accepts, ~w(json)
   end
 
+  # Used by deploy scripts
+  get "/revision", ContentTranslator.PageController, :revision
+
   get "/", ContentTranslator.PageController, :index
   get "/boom", ContentTranslator.BoomController, :index
 

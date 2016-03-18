@@ -1,11 +1,35 @@
-# Setting up automatic deploy:
+#!/bin/bash
 
-# Either use the default heroku deploy setup if that works for you, or:
+set -e
 
-# 1) Add your fork of this project to circleci
-# 2) Add a private key under "SSH Permissions" that belongs to your heroku user
-# 3) Set up .netrc under "Dependency commands" like https://gist.github.com/joakimk/5efe8d04e526d521e8c6
-# 4) Set HEROKU_USER, HEROKU_API_KEY and HEROKU_APP_NAME1 in "Environment variables".
-# 5) Trigger a build
+# Add config for heroku commands like "heroku config:set" and git based deploy over https
+echo -e "machine api.heroku.com\n  login $HEROKU_API_USER\n  password $HEROKU_API_TOKEN\nmachine code.heroku.com\n  login $HEROKU_API_USER\n  password $HEROKU_API_TOKEN\nmachine git.heroku.com\n  login $HEROKU_API_USER\n  password $HEROKU_API_TOKEN" > ~/.netrc
+chmod 0600 ~/.netrc
 
-[ $HEROKU_APP_NAME1 ] && git push git@heroku.com:$HEROKU_APP_NAME1.git $CIRCLE_SHA1:master
+cd ~/$CIRCLE_PROJECT_REPONAME
+
+# Deploy
+revision=$(git rev-parse HEAD)
+app_name=$1
+
+function _main {
+  _deploy_to_heroku
+  _smoke_test
+}
+
+function _deploy_to_heroku {
+  heroku git:remote --app $app_name
+  git push heroku master
+  heroku config:set GIT_COMMIT=$revision -a $app_name
+}
+
+function _smoke_test {
+  ruby script/ci/support/wait_for_new_revision_to_serve_requests.rb $app_name $revision
+
+  echo
+  echo "Running smoke test."
+
+  APP_URL=https://$app_name.herokuapp.com script/ci/smoke_test.sh
+}
+
+_main

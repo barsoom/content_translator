@@ -9,10 +9,10 @@ dependencies:
 
 test:
   override:
-    - script/ci/tests.sh
+    - script/ci/pipeline.sh tests script/ci/test.sh
 
 deployment:
   production:
     branch: master
     commands:
-      - script/ci/deploy.sh
+      - script/ci/pipeline.sh deploy_production "script/ci/deploy.sh $HEROKU_APP_NAME"
