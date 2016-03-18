@@ -9,7 +9,7 @@ dependencies:
 
 test:
   override:
-    - script/ci/pipeline.sh tests script/ci/test.sh
+    - script/ci/pipeline.sh tests script/ci/tests.sh
 
 deployment:
   production:
