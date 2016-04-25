@@ -40,6 +40,9 @@ defmodule ContentTranslator.WtiTranslationApi do
     # So far just stripping it away hasn't been a problem, but if it's a problem for you, ask WTI.
     text = String.strip(value)
 
+    # We pass "validation: false" here since we can't give any feedback to the client system in any
+    # simple way if the data does not pass the WTI validations. It's probably enough that you
+    # are prompted by those errors in the WTI UI.
     post("/strings/#{string_id}/locales/#{locale}/translations", %{ text: text, validation: "false" })
     |> verify_response_code(202) # Accepted
   end
