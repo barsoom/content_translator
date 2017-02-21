@@ -38,8 +38,12 @@ defmodule WtiWebhookApiTest do
   end
 
   defp post(url, params) do
-    conn(:post, url, params)
-    |> ContentTranslator.Router.call(ContentTranslator.Router.init([]))
+    # Simulate how WTI does the request. They send it as JSON within the request body.
+    body_string = params |> Enum.into(%{}) |> JSON.encode
+
+    conn(:post, url, body_string)
+    |> Plug.Conn.put_req_header("content-type", "application/json")
+    |> ContentTranslator.Endpoint.call(ContentTranslator.Endpoint.init([]))
   end
 
   # the API call is async, so we need to wait for it to finish
