@@ -4,6 +4,8 @@ defmodule ContentTranslator.WtiWebhookApiController do
   alias ContentTranslator.SyncToClientAppWorker
 
   def create(conn, %{ "payload" => payload }) do
+    conn |> IO.inspect # heroku debug
+
     payload
     |> process
 
