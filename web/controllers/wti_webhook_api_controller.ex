@@ -5,6 +5,7 @@ defmodule ContentTranslator.WtiWebhookApiController do
 
   def create(conn, %{ "payload" => payload }) do
     payload
+    |> IO.inspect # Temporary debug log on heroku
     |> JSON.parse
     |> process
 
