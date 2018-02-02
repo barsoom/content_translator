@@ -65,13 +65,22 @@ defmodule ContentTranslator.WtiTranslationApi do
   end
 
   defp find_existing_strings(key) do
+    # 200 if it exists; 404 (with a "[]" response body) if it doesn't.
     get("/strings?filters[key]=#{key}")
-    |> verify_response_code(200)
+    |> verify_one_of_response_codes([ 200, 404 ])
     |> parse_body
   end
 
   defp parse_body(response) do
     JSON.parse(response.body)
+  end
+
+  defp verify_one_of_response_codes(response, codes) do
+    unless Enum.member?(codes, response.status_code) do
+      raise "Unexpected response: #{inspect(response)}"
+    end
+
+    response
   end
 
   defp verify_response_code(response, code) do
