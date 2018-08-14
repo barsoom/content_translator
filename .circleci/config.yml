@@ -5,7 +5,7 @@ jobs:
     docker:
       # Keep in sync with the version in elixir_buildpack.config
       - image: circleci/elixir:1.7.2
-      - image: circleci/redis:2.8
+      - image: circleci/redis:3.2.12-alpine
 
     steps:
       - type: checkout
