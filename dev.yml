@@ -1,3 +1,5 @@
 docker_services:
   redis:
-    image: redis:2.8
+    image: "redis:3.0-alpine"
+    options: "--publish 6379 -v $DATABASE_ROOT/content_translator/redis:/data"
+    command: "redis-server --appendonly yes"

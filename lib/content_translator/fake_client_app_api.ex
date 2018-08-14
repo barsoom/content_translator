@@ -14,11 +14,12 @@ defmodule ContentTranslator.FakeClientAppApi do
   defp pid do
     pid = Process.whereis(:fake_client_app)
 
-    unless pid do
+    if pid do
+      pid
+    else
       {:ok, pid} = Agent.start_link(fn -> nil end)
       Process.register(pid, :fake_client_app)
+      pid
     end
-
-    pid
   end
 end
