@@ -1,7 +1,6 @@
 version: 2
 jobs:
   test:
-    working_directory: ~/content_translator
     docker:
       # Keep in sync with the version in elixir_buildpack.config
       - image: circleci/elixir:1.7.2
@@ -24,7 +23,6 @@ jobs:
           command: script/ci/pipeline.sh tests "script/ci/tests.sh"
 
   deploy:
-    working_directory: ~/content_translator
     docker:
       - image: circleci/ruby:2.5.0
 

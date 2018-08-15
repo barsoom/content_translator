@@ -15,7 +15,7 @@ fi
 echo -e "machine api.heroku.com\n  login $HEROKU_API_USER\n  password $HEROKU_API_TOKEN\nmachine code.heroku.com\n  login $HEROKU_API_USER\n  password $HEROKU_API_TOKEN\nmachine git.heroku.com\n  login $HEROKU_API_USER\n  password $HEROKU_API_TOKEN" > ~/.netrc
 chmod 0600 ~/.netrc
 
-cd ~/$CIRCLE_PROJECT_REPONAME
+cd ~/project
 
 # Deploy
 revision=$(git rev-parse HEAD)
