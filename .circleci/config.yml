@@ -8,19 +8,32 @@ jobs:
       - image: circleci/redis:3.2.12-alpine
 
     steps:
-      - type: checkout
-      - run: mix local.rebar --force
-      - run: mix local.hex --force
-      - run: mix deps.get
-      - run: script/ci/pipeline.sh tests "script/ci/tests.sh"
+      - checkout:
+          name: "Checking out code"
+      - run:
+          name: "Setting up package manager"
+          command: mix local.rebar --force && mix local.hex --force
+      - run:
+          name: "Getting deps"
+          command: mix deps.get
+      - run:
+          name: "Running tests"
+          command: script/ci/pipeline.sh tests "script/ci/tests.sh"
 
   deploy:
     working_directory: ~/content_translator
     docker:
       - image: circleci/ruby:2.5.0
+
     steps:
-      - type: checkout
-      - run: script/ci/pipeline.sh deploy_production "script/ci/deploy.sh $HEROKU_APP_NAME"
+      - checkout:
+          name: "Checking out code"
+      - run:
+          name: "Deploying to production"
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              script/ci/pipeline.sh deploy_production "script/ci/deploy.sh $HEROKU_APP_NAME"
+            fi
 
 workflows:
   version: 2
