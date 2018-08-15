@@ -17,6 +17,9 @@ jobs:
           name: "Getting deps"
           command: mix deps.get
       - run:
+          name: "Compiling code"
+          command: MIX_ENV=test mix compile
+      - run:
           name: "Running tests"
           command: script/ci/pipeline.sh tests "script/ci/tests.sh"
 
