@@ -6,7 +6,7 @@ defmodule ContentTranslator.PageController do
   end
 
   def revision(conn, _params) do
-    conn |> text(System.get_env("GIT_COMMIT"))
+    conn |> text(System.get_env("HEROKU_SLUG_COMMIT"))
   end
 
   def redirect_to_translation_service(conn, params) do
