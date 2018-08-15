@@ -60,6 +60,7 @@ You will be redirected to a WTI search for the `WTI_PROJECT_ID`.
 This app can be run on a free heroku dyno since it boots fast enough to process new requests from WTI without timeouts. Usually you don't have new translations coming in all day long either, so it can sleep most of the time.
 
     heroku apps:create some-content-translator --region eu --buildpack https://github.com/HashNuke/heroku-buildpack-elixir.git
+    heroku labs:enable runtime-dyno-metadata
     heroku config:set MIX_ENV=prod
     heroku config:set HOSTNAME=some-content-translator.herokuapp.com
 
