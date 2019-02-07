@@ -2,14 +2,16 @@ defmodule ContentTranslator.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :content_translator,
-     version: "1.0.0",
-     elixir: "~> 1.0",
-     elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix] ++ Mix.compilers,
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :content_translator,
+      version: "1.0.0",
+      elixir: "~> 1.0",
+      elixirc_paths: elixirc_paths(Mix.env),
+      compilers: [:phoenix] ++ Mix.compilers,
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps(),
+    ]
   end
 
   # Configuration for the OTP application
