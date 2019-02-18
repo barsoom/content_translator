@@ -17,7 +17,7 @@ defmodule ContentTranslator.WtiWebhookApiController do
   # Changes not made by users are ignored so
   # that we don't cause infinite loops when this
   # app changes data in WTI.
-  defp notify_client_app(%{"user_id" => nil} = payload) do
+  defp notify_client_app(%{"user_id" => nil}) do
     # no-op
   end
 

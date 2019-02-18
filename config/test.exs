@@ -4,6 +4,8 @@ config :content_translator, ContentTranslator.Endpoint,
   http: [port: System.get_env("PORT") || 4001],
   translation_api: ContentTranslator.FakeTranslationApi,
   client_app_api: ContentTranslator.FakeClientAppApi,
+  wti_project_token: "fake_token",
+  client_app_webhook_url: "fake_webhook_url",
   wti_project_id: 1234,
   auth_token: "secret-token"
 
