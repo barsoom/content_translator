@@ -11,17 +11,17 @@ defmodule ContentTranslator.WtiWebhookApiController do
   end
 
   defp process(payload) do
-    notify_client_app(payload, payload["user_id"])
+    notify_client_app(payload)
   end
 
   # Changes not made by users are ignored so
   # that we don't cause infinite loops when this
   # app changes data in WTI.
-  defp notify_client_app(_payload, nil) do
+  defp notify_client_app(%{"user_id" => nil} = payload) do
     # no-op
   end
 
-  defp notify_client_app(payload, user_id) do
+  defp notify_client_app(payload) do
     payload
     |> extract_data
     |> Toniq.enqueue_to(SyncToClientAppWorker)

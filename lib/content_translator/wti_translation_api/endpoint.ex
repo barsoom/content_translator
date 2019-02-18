@@ -14,7 +14,7 @@ defmodule ContentTranslator.WtiTranslationApi.Endpoint do
   end
 
   defp url(path) do
-    "https://webtranslateit.com/api/projects/#{project_token}/#{path}"
+    "https://webtranslateit.com/api/projects/#{project_token()}/#{path}"
     |> URI.encode
   end
 
