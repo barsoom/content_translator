@@ -7,7 +7,15 @@ config :content_translator, ContentTranslator.Endpoint,
   wti_project_id: 1234,
   auth_token: "secret-token"
 
-config :toniq, redis_url: (System.get_env("REDIS_URL") || "redis://localhost:6379") <> "/1"
+# Auctionet developers use https://github.com/barsoom/devbox to e.g. get dependencies from dev.yml.
+redis_port =
+  if System.get_env("DEVBOX") do
+    System.cmd("service_port", [ "redis" ]) |> elem(0) |> String.trim()
+  else
+    6379
+  end
+
+config :toniq, redis_url: (System.get_env("REDIS_URL") || "redis://localhost:#{redis_port}") <> "/1"
 
 # Print only warnings and errors during test
 config :logger, level: :warn
