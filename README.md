@@ -121,8 +121,9 @@ By the time you read this there might be an web based admin UI for toniq you cou
 
 ## Development
 
-    # Required for tests/server to run.
+    # Redis is required for tests/server to run. Start it with
     redis-server
+    # (If you're an Auctionet developer using devbox, it should be started automatically in the background by the `dev` command – see the dev.yml file.)
 
     mix deps.get
     mix test
