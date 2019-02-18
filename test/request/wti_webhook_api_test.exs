@@ -9,23 +9,23 @@ defmodule WtiWebhookApiTest do
   end
 
   test "notifies the client app about an updated text" do
-    post "/api/wti_webhook", payload: payload, token: "secret-token"
+    post "/api/wti_webhook", payload: payload(), token: "secret-token"
 
-    wait_for_the_translation_update_to_sent
+    wait_for_the_translation_update_to_sent()
 
     assert FakeClientAppApi.last_update == %{ key: "help_item_20: question", value: "English text", locale: "en" }
   end
 
   test "ignores changes not made by users to avoid infinite loops" do
-    post "/api/wti_webhook", payload: non_user_payload, token: "secret-token"
+    post "/api/wti_webhook", payload: non_user_payload(), token: "secret-token"
 
-    wait_for_the_translation_update_to_sent
+    wait_for_the_translation_update_to_sent()
 
     assert FakeClientAppApi.last_update == nil
   end
 
   test "updating a text with an invalid token fails" do
-    response = post "/api/wti_webhook", payload: payload, token: "invalid-secret-token"
+    response = post "/api/wti_webhook", payload: payload(), token: "invalid-secret-token"
     assert response.status == 403
   end
 
@@ -39,7 +39,7 @@ defmodule WtiWebhookApiTest do
 
   defp post(url, params) do
     # Simulate how WTI does the request. They send it as JSON within the request body.
-    body_string = params |> Enum.into(%{}) |> JSON.encode
+    body_string = params |> Enum.into(%{}) |> JSON.encode()
 
     conn(:post, url, body_string)
     |> Plug.Conn.put_req_header("content-type", "application/json")

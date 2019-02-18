@@ -13,7 +13,7 @@ defmodule TextsApiTest do
     response = post "/api/texts", key: "help_item_25: question", value: "What is elixir?", locale: "en", token: "secret-token"
     assert response.status == 200
 
-    wait_for_the_translation_to_be_processed
+    wait_for_the_translation_to_be_processed()
 
     assert FakeTranslationApi.texts == [
       %{ key: "help_item_25: question", value: "What is elixir?", locale: "en", id: 1 }
@@ -22,10 +22,10 @@ defmodule TextsApiTest do
 
   test "updating a text does not create duplicates" do
     post! "/api/texts", key: "help_item_25: question", value: "What is elixir?", locale: "en", token: "secret-token"
-    wait_for_the_translation_to_be_processed
+    wait_for_the_translation_to_be_processed()
 
     post! "/api/texts", key: "help_item_25: question", value: "What is elixir?!", locale: "en", token: "secret-token"
-    wait_for_the_translation_to_be_processed
+    wait_for_the_translation_to_be_processed()
 
     assert FakeTranslationApi.texts == [
       %{ key: "help_item_25: question", value: "What is elixir?!", locale: "en", id: 1 }
@@ -39,9 +39,9 @@ defmodule TextsApiTest do
 
   test "deleting a text" do
     post! "/api/texts", key: "help_item_25: question", value: "What is elixir?", locale: "en", token: "secret-token"
-    wait_for_the_translation_to_be_processed
+    wait_for_the_translation_to_be_processed()
     post! "/api/texts", key: "help_item_25: answer", value: "A...", locale: "en", token: "secret-token"
-    wait_for_the_translation_to_be_processed
+    wait_for_the_translation_to_be_processed()
 
     response = delete "/api/texts", key: "help_item_25: question", token: "secret-token"
     assert response.status == 200
@@ -50,7 +50,7 @@ defmodule TextsApiTest do
     response = delete "/api/texts", key: "help_item_25: question", token: "secret-token"
     assert response.status == 200
 
-    wait_for_the_translation_to_be_processed
+    wait_for_the_translation_to_be_processed()
 
     assert FakeTranslationApi.texts == [
       %{ key: "help_item_25: answer", value: "A...", locale: "en", id: 2 }

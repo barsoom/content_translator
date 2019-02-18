@@ -2,13 +2,13 @@ defmodule ContentTranslator.FakeClientAppApi do
   def reset, do: update(nil)
 
   def update(attributes) do
-    Agent.update(pid, fn(_old_attributes) ->
+    Agent.update(pid(), fn(_old_attributes) ->
       attributes
     end)
   end
 
   def last_update do
-    Agent.get(pid, fn attributes -> attributes end)
+    Agent.get(pid(), fn attributes -> attributes end)
   end
 
   defp pid do

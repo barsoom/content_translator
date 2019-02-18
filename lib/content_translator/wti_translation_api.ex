@@ -38,7 +38,7 @@ defmodule ContentTranslator.WtiTranslationApi do
   defp update_translation(string_id, value, locale) do
     # WTI does not like string begining or ending with whitespace: "Error saving translation", "406 Not Acceptable".
     # So far just stripping it away hasn't been a problem, but if it's a problem for you, ask WTI.
-    text = String.strip(value)
+    text = String.trim(value)
 
     # We pass "validation: false" here since we can't give any feedback to the client system in any
     # simple way if the data does not pass the WTI validations. It's probably enough that you
