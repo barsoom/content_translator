@@ -36,9 +36,9 @@ defmodule ContentTranslator.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:cowboy, "~> 1.0"},
 
-      # a http client and it's and dependency
-      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2", override: true},
+      # a http client and its dependency
       {:httpotion, "~> 2.0.0"},
+      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2", override: true},
 
       {:honeybadger, "~> 0.7"},
       {:exredis, "0.1.3"},
