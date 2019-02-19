@@ -41,7 +41,7 @@ defmodule ContentTranslator.Mixfile do
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2", override: true},
 
       {:honeybadger, "~> 0.7"},
-      {:exredis, "0.1.3"},
+      {:exredis, ">= 0.1.3"},
       {:toniq, "~> 1.0"},
     ]
   end
