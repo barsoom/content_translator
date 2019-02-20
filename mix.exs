@@ -37,8 +37,8 @@ defmodule ContentTranslator.Mixfile do
       {:cowboy, "~> 1.0"},
 
       # a http client and its dependency
-      {:httpotion, ">= 2.0.0"},
-      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.4.1", override: true},
+      {:httpotion, "~> 2.0.0"},
+      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2", override: true},
 
       {:honeybadger, "~> 0.7"},
       {:exredis, ">= 0.1.3"},
