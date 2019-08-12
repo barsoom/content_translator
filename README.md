@@ -23,7 +23,7 @@ See the configuration section for how to set up the token.
 
 ### Receiving changes from this app
 
-Changes are sent back using a webhook. The webhook retries until it get' a 200 response or a few minutes has passed, at which point you can manually trigger more retries (see more on error handling below). No update sent though this app is lost unless you manually choose to delete it.
+Changes are sent back using a webhook. The webhook retries until it gets a 200 response or a few minutes has passed, at which point you can manually trigger more retries (see more on error handling below). No update sent though this app is lost unless you manually choose to delete it.
 
 The value of `payload` is form-encoded JSON.
 
