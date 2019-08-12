@@ -19,24 +19,24 @@ These calls can be made multiple times without causing any problems, so design y
     POST   /api/texts token=authtoken key="help_item_25: question" value="What is elixir?" locale=en
     DELETE /api/texts token=authtoken key="help_item_25: question"
 
-See the configuration section for how to setup the token.
+See the configuration section for how to set up the token.
 
 ### Receiving changes from this app
 
-Changes are sent back using a webhook. The webhook retries until it get's a 200 response or a few minutes has passed, at which point you can manually trigger more retries (see more on error handling below). No update sent though this app is lost unless you manually choose to delete it.
+Changes are sent back using a webhook. The webhook retries until it get' a 200 response or a few minutes has passed, at which point you can manually trigger more retries (see more on error handling below). No update sent though this app is lost unless you manually choose to delete it.
 
-The value of `payload` is form encoded JSON.
+The value of `payload` is form-encoded JSON.
 
-Which looks like this when not form encoded:
+Which looks like this when not form-encoded:
 
       {"key":"help_item_25: question","value":"Vad är elixir?","locale":"sv"}
 
-In rails you can do this:
+In Rails you can do this:
 
       payload = JSON.parse(params[:payload])
       payload["name"] # => "question"
 
-See the configuration section for how to setup webhook URLs.
+See the configuration section for how to set up webhook URLs.
 
 ### Linking to a search on WTI through this app
 
@@ -57,7 +57,7 @@ You will be redirected to a WTI search for the `WTI_PROJECT_ID`.
 
 ### Deploy this app to heroku
 
-This app can be run on a free heroku dyno since it boots fast enough to process new requests from WTI without timeouts. Usually you don't have new translations coming in all day long either, so it can sleep most of the time.
+This app can be run on a free Heroku dyno since it boots fast enough to process new requests from WTI without timeouts. Usually you don't have new translations coming in all day long either, so it can sleep most of the time.
 
     heroku apps:create some-content-translator --region eu --buildpack https://github.com/HashNuke/heroku-buildpack-elixir.git
     heroku labs:enable runtime-dyno-metadata
