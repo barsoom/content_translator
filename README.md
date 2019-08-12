@@ -92,8 +92,6 @@ If the error is "req_timedout", it should be safe to retry (TODO: improve handli
 These are some helpful commands:
 
     # Open a development console
-    # NOTE! This does not work at the time of writing due to our binwrappers:
-    # https://auctionet.slack.com/archives/CF9SAN79V/p1565611907134700
     iex -S mix
 
     # Open a production console
