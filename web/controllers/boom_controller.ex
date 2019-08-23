@@ -5,4 +5,3 @@ defmodule ContentTranslator.BoomController do
     raise "Boom! (checking error reporting)"
   end
 end
-

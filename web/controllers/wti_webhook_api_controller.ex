@@ -3,11 +3,11 @@ defmodule ContentTranslator.WtiWebhookApiController do
 
   alias ContentTranslator.SyncToClientAppWorker
 
-  def create(conn, %{ "payload" => payload }) do
+  def create(conn, %{"payload" => payload}) do
     payload
     |> process
 
-    text conn, "ok"
+    text(conn, "ok")
   end
 
   defp process(payload) do

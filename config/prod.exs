@@ -26,7 +26,6 @@ config :toniq, redis_url: System.get_env("REDISCLOUD_URL")
 #
 # Where those two env variables point to a file on
 # disk for the key and cert.
-  
 
 # Do not pring debug messages in production
 config :logger, level: :info

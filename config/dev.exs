@@ -14,7 +14,7 @@ config :content_translator, ContentTranslator.Endpoint,
 # Auctionet developers use https://github.com/barsoom/devbox to e.g. get dependencies from dev.yml.
 redis_port =
   if System.get_env("DEVBOX") do
-    System.cmd("service_port", [ "redis" ]) |> elem(0) |> String.trim()
+    System.cmd("service_port", ["redis"]) |> elem(0) |> String.trim()
   else
     6379
   end
