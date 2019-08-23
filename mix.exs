@@ -42,9 +42,10 @@ defmodule ContentTranslator.Mixfile do
       # NOTE: Upgrading to httpotion 3.1.1 and ibrowse v4.4.1 in 2f2c1f472a0b8e0f56ecb4c89cc310eecf9a88af broke the sync from WTI to Auctionet without tests failing! Beware.
       {:httpotion, "~> 2.0.0"},
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2", override: true},
-      {:honeybadger, "~> 0.12"},
+
+      {:honeybadger, "~> 0.7"},
       {:exredis, ">= 0.1.3"},
-      {:toniq, "~> 1.0"}
+      {:toniq, "~> 1.0"},
     ]
   end
 end
