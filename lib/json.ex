@@ -4,10 +4,10 @@
 
 defmodule JSON do
   def encode(data) do
-    Poison.encode!(data)
+    Jason.encode!(data)
   end
 
   def parse(string) do
-    Poison.decode!(string)
+    Jason.decode!(string)
   end
 end
