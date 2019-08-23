@@ -7,7 +7,7 @@ defmodule ContentTranslator do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(ContentTranslator.Endpoint, []),
+      supervisor(ContentTranslator.Endpoint, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

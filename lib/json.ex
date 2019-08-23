@@ -11,4 +11,3 @@ defmodule JSON do
     Poison.decode!(string)
   end
 end
-

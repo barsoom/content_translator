@@ -43,12 +43,16 @@ defmodule ContentTranslator.WtiTranslationApi do
     # We pass "validation: false" here since we can't give any feedback to the client system in any
     # simple way if the data does not pass the WTI validations. It's probably enough that you
     # are prompted by those errors in the WTI UI.
-    post("/strings/#{string_id}/locales/#{locale}/translations", %{ text: text, validation: "false" })
-    |> verify_response_code(202) # Accepted
+    post("/strings/#{string_id}/locales/#{locale}/translations", %{
+      text: text,
+      validation: "false"
+    })
+    # Accepted
+    |> verify_response_code(202)
   end
 
   defp use_existing_string_or_create_a_new_one([], key) do
-    post("/strings", %{ key: key })
+    post("/strings", %{key: key})
     |> verify_response_code(201)
     |> parse_body
     |> get_id
@@ -67,7 +71,7 @@ defmodule ContentTranslator.WtiTranslationApi do
   defp find_existing_strings(key) do
     # 200 if it exists; 404 (with a "[]" response body) if it doesn't.
     get("/strings?filters[key]=#{key}")
-    |> verify_one_of_response_codes([ 200, 404 ])
+    |> verify_one_of_response_codes([200, 404])
     |> parse_body
   end
 

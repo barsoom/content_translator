@@ -1,10 +1,8 @@
 defmodule ContentTranslator.ClientAppApi do
   def update(attributes) do
     HTTPotion.post(
-      Config.client_app_webhook_url,
-      [
-        body: "payload=#{URI.encode_www_form(JSON.encode(attributes))}"
-      ]
+      Config.client_app_webhook_url(),
+      body: "payload=#{URI.encode_www_form(JSON.encode(attributes))}"
     )
     |> verify_response_code(200)
   end

@@ -11,6 +11,6 @@ defmodule ContentTranslator.SyncToTranslationServiceWorker do
   end
 
   defp api do
-    Config.translation_api
+    Config.translation_api()
   end
 end

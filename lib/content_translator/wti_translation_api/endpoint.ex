@@ -4,21 +4,20 @@ defmodule ContentTranslator.WtiTranslationApi.Endpoint do
   def delete(path), do: api_call(:delete, path)
 
   defp api_call(method, path, data \\ %{}) do
-    HTTPotion.request(method,
+    HTTPotion.request(
+      method,
       url(path),
-      [
-        body: JSON.encode(data),
-        headers: [ "Content-Type": "application/json" ]
-      ]
+      body: JSON.encode(data),
+      headers: ["Content-Type": "application/json"]
     )
   end
 
   defp url(path) do
     "https://webtranslateit.com/api/projects/#{project_token()}/#{path}"
-    |> URI.encode
+    |> URI.encode()
   end
 
   defp project_token do
-    Config.wti_project_token
+    Config.wti_project_token()
   end
 end
