@@ -1,5 +1,5 @@
-defmodule ContentTranslator.ErrorView do
-  use ContentTranslator.Web, :view
+defmodule ContentTranslatorWeb.ErrorView do
+  use ContentTranslatorWeb, :view
 
   def render("404.html", _assigns) do
     "Page not found - 404"

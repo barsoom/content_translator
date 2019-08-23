@@ -1,5 +1,5 @@
-defmodule ContentTranslator.WtiWebhookApiController do
-  use ContentTranslator.Web, :api_controller
+defmodule ContentTranslatorWeb.WtiWebhookApiController do
+  use ContentTranslatorWeb, :api_controller
 
   alias ContentTranslator.SyncToClientAppWorker
 

@@ -51,7 +51,7 @@ defmodule WtiWebhookApiTest do
 
     conn(:post, url, body_string)
     |> Plug.Conn.put_req_header("content-type", "application/json")
-    |> ContentTranslator.Endpoint.call(ContentTranslator.Endpoint.init([]))
+    |> ContentTranslatorWeb.Endpoint.call(ContentTranslatorWeb.Endpoint.init([]))
   end
 
   # the API call is async, so we need to wait for it to finish

@@ -106,7 +106,7 @@ defmodule TextsApiTest do
 
   defp call(method, url, params) do
     conn(method, url, params)
-    |> ContentTranslator.Endpoint.call(ContentTranslator.Endpoint.init([]))
+    |> ContentTranslatorWeb.Endpoint.call(ContentTranslatorWeb.Endpoint.init([]))
   end
 
   defp post!(url, params) do

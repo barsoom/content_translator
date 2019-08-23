@@ -1,4 +1,4 @@
-defmodule ContentTranslator.Endpoint do
+defmodule ContentTranslatorWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :content_translator
 
   # Serve at "/" the static files from "priv/static" directory.
@@ -39,5 +39,5 @@ defmodule ContentTranslator.Endpoint do
     encryption_salt: "K4f4ka6a"
   )
 
-  plug(ContentTranslator.Router)
+  plug(ContentTranslatorWeb.Router)
 end

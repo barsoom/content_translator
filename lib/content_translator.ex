@@ -7,7 +7,7 @@ defmodule ContentTranslator do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(ContentTranslator.Endpoint, [])
+      supervisor(ContentTranslatorWeb.Endpoint, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
@@ -19,7 +19,7 @@ defmodule ContentTranslator do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    ContentTranslator.Endpoint.config_change(changed, removed)
+    ContentTranslatorWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

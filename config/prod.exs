@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :content_translator, ContentTranslator.Endpoint,
+config :content_translator, ContentTranslatorWeb.Endpoint,
   url: [host: "example.com"],
   http: [port: System.get_env("PORT")],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
@@ -18,7 +18,7 @@ config :toniq, redis_url: System.get_env("REDISCLOUD_URL")
 # To get SSL working, you will need to add the `https` key
 # to the previous section:
 #
-#  config:content_translator, ContentTranslator.Endpoint,
+#  config:content_translator, ContentTranslatorWeb.Endpoint,
 #    ...
 #    https: [port: 443,
 #            keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
@@ -40,5 +40,5 @@ config :logger, level: :info
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
 #
-#     config :content_translator, ContentTranslator.Endpoint, server: true
+#     config :content_translator, ContentTranslatorWeb.Endpoint, server: true
 #

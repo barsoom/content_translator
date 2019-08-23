@@ -1,5 +1,5 @@
-defmodule ContentTranslator.PageController do
-  use ContentTranslator.Web, :controller
+defmodule ContentTranslatorWeb.PageController do
+  use ContentTranslatorWeb, :controller
 
   def index(conn, _params) do
     html(

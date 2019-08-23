@@ -1,4 +1,4 @@
-defmodule ContentTranslator.Web do
+defmodule ContentTranslatorWeb do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
@@ -14,7 +14,9 @@ defmodule ContentTranslator.Web do
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View,
+        root: "lib/content_translator_web/templates",
+        namespace: ContentTranslatorWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -22,15 +24,15 @@ defmodule ContentTranslator.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      alias ContentTranslator.Router.Helpers, as: Routes
+      alias ContentTranslatorWeb.Router.Helpers, as: Routes
     end
   end
 
   def controller do
     quote do
-      use Phoenix.Controller
+      use Phoenix.Controller, namespace: ContentTranslatorWeb
 
-      alias ContentTranslator.Router.Helpers, as: Routes
+      alias ContentTranslatorWeb.Router.Helpers, as: Routes
     end
   end
 

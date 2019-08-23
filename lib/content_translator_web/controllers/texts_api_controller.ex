@@ -1,5 +1,5 @@
-defmodule ContentTranslator.TextsApiController do
-  use ContentTranslator.Web, :api_controller
+defmodule ContentTranslatorWeb.TextsApiController do
+  use ContentTranslatorWeb, :api_controller
 
   alias ContentTranslator.SyncToTranslationServiceWorker
 

@@ -6,7 +6,7 @@
 use Mix.Config
 
 # Configures the endpoint
-config :content_translator, ContentTranslator.Endpoint,
+config :content_translator, ContentTranslatorWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "/IqbN1/dR1PVfQmW5bLUGeQHkfEUStbOIaRf8g1ZxOMuwz5lLB080jJuZFCsIkOg",
   debug_errors: false,

@@ -14,6 +14,6 @@ defmodule TextsTest do
 
   defp call(method, url, params) do
     conn(method, url, params)
-    |> ContentTranslator.Router.call(ContentTranslator.Router.init([]))
+    |> ContentTranslatorWeb.Router.call(ContentTranslatorWeb.Router.init([]))
   end
 end
