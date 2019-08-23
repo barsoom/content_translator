@@ -130,7 +130,7 @@ By the time you read this there might be an web based admin UI for toniq you cou
 
     mix deps.get
     mix test
-    mix phoenix.server
+    mix phx.server
 
 ### Maintenance
 
