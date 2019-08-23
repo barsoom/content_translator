@@ -22,7 +22,7 @@ defmodule ContentTranslator.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import ContentTranslator.Router.Helpers
+      alias ContentTranslator.Router.Helpers, as: Routes
     end
   end
 
@@ -30,7 +30,7 @@ defmodule ContentTranslator.Web do
     quote do
       use Phoenix.Controller
 
-      import ContentTranslator.Router.Helpers
+      alias ContentTranslator.Router.Helpers, as: Routes
     end
   end
 
@@ -41,7 +41,7 @@ defmodule ContentTranslator.Web do
       plug :authenticate
 
       defp authenticate(conn, _options) do
-        if conn.params["token"] == Config.auth_token do
+        if conn.params["token"] == Config.auth_token() do
           conn
         else
           conn |> deny_and_halt
