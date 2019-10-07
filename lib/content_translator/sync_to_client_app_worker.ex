@@ -3,6 +3,6 @@ defmodule ContentTranslator.SyncToClientAppWorker do
   use Toniq.Worker, max_concurrency: 3
 
   def perform(attributes) do
-    Config.client_app_api.update(attributes)
+    Config.client_app_api().update(attributes)
   end
 end
