@@ -120,6 +120,9 @@ These are some helpful commands:
     # Retry all jobs
     iex> Toniq.failed_jobs |> Enum.each fn (job) -> Toniq.retry(job) end
 
+    # See raw Redis data
+    Process.whereis(:toniq_redis) |> Exredis.Api.keys("*")
+
 By the time you read this there might be an web based admin UI for toniq you could use instead, [check the project](https://github.com/joakimk/toniq).
 
 ## Development
