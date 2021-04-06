@@ -4,6 +4,8 @@
 
 ## Content translator
 
+Note: https://auctionet.slack.com/archives/CF9SAN79V/p1617694713026100
+
 A webservice to translate content using WebTranslateIt and keep track of mappings to local ids.
 
 This app is designed with reliability in mind. It will retry calls both to the client app and to the WTI service as needed.
