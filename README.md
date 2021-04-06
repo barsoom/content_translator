@@ -4,7 +4,11 @@
 
 ## Content translator
 
-Note: https://auctionet.slack.com/archives/CF9SAN79V/p1617694713026100
+## Note:
+Based on some evaluation from Maintenace team, it was decied to not develop further. 
+Tests don’t accurately reflect whether it works and it a job processor not longer maintained.
+Open for re-evaluation.
+https://auctionet.slack.com/archives/CF9SAN79V/p1617694713026100
 
 A webservice to translate content using WebTranslateIt and keep track of mappings to local ids.
 
