@@ -1,8 +1,10 @@
 **Status**: Used in production.
+
 Based on some evaluation from Maintenace team, it was decied to not develop further. 
 Tests don’t accurately reflect whether it works and it a job processor not longer maintained.
 Open for re-evaluation.
 https://auctionet.slack.com/archives/CF9SAN79V/p1617694713026100
+
 
 [CircleCi](https://circleci.com/gh/barsoom/content_translator)
 
