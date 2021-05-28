@@ -1,6 +1,6 @@
 **Status**: Used in production.
 
-Based on some evaluation from the Maintenance team, it was decided to not develop further.
+Based on some evaluation from the Maintenance team, it was decided we should rewrite rather than update this project.
 Tests don’t accurately reflect whether it works and it's using a job processor no longer maintained.
 Open for re-evaluation.
 https://auctionet.slack.com/archives/CF9SAN79V/p1617694713026100
