@@ -1,9 +1,4 @@
-**Status**: Used in production.
-
-Based on some evaluation from the Maintenance team, it was decided we should rewrite rather than update this project.
-Tests don’t accurately reflect whether it works and it's using a job processor no longer maintained.
-Open for re-evaluation.
-https://auctionet.slack.com/archives/CF9SAN79V/p1617694713026100
+**Status**: Used in production by Auctionet, though we decided in April 2021 to rewrite it. Tests don’t accurately reflect whether it works and it's using a job processor that is no longer maintained. Discussion (available to Auctionet only): <https://auctionet.slack.com/archives/CF9SAN79V/p1617694713026100>
 
 
 [CircleCi](https://circleci.com/gh/barsoom/content_translator)
