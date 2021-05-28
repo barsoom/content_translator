@@ -16,9 +16,11 @@ This app is designed with reliability in mind. It will retry calls both to the c
 
 This app follows the model of [gridlook](https://github.com/barsoom/gridlook) to keep things simple: one deployment per client project.
 
-### Sending content changes to this app
+### Sending content changes from your app (e.g. Auctionet) to WTI, via this app
 
-Content is sent to this app by HTTP calls. Create and update is POST, destroy is DELETE.
+When some records are created, changed or destroyed in your app, they should send content to this app via HTTP calls. Create and update is POST, destroy is DELETE.
+
+In Auctionet, this happens via a `SyncedToContentTranslationApp` mixin that queues up a job.
 
 These calls can be made multiple times without causing any problems, so design your app to continue retrying the requests until you get a 200 response (e.g. instead of a timeout).
 
@@ -27,9 +29,13 @@ These calls can be made multiple times without causing any problems, so design y
 
 See the configuration section for how to set up the token.
 
-### Receiving changes from this app
+### Getting content changes from WTI into your app (e.g. Auctionet)
 
-Changes are sent back using a webhook. The webhook retries until it gets a 200 response or a few minutes has passed, at which point you can manually trigger more retries (see more on error handling below). No update sent though this app is lost unless you manually choose to delete it.
+When translations change in WTI, it will call a configured webhook, calling an endpoint in this app.
+
+This app will then in turn call a webhook in your app (e.g. Auctionet). In Auctionet, this webhook is received by `ContentTranslationsController`.
+
+This webhook retries until it gets a 200 response or a few minutes has passed, at which point you can manually trigger more retries (see more on error handling below). No update sent though this app is lost unless you manually choose to delete it.
 
 The value of `payload` is form-encoded JSON.
 
