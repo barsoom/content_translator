@@ -90,7 +90,7 @@ This app can be run on a free Heroku dyno since it boots fast enough to process 
 0. Change something in your client app, see that it appears in WTI
 0. Translate something in WTI and see if the content is updated in your app
 
-## What to do when an error occurs with the sync
+### What to do when an error occurs with the sync
 
 If the sync fails, either from the application to WTI, or the other way around, then you will have to decide what to do about the failed jobs.
 
@@ -131,6 +131,20 @@ These are some helpful commands:
     Process.whereis(:toniq_redis) |> Exredis.Api.keys("*")
 
 By the time you read this there might be an web based admin UI for toniq you could use instead, [check the project](https://github.com/joakimk/toniq).
+
+### Force syncing of data from WTI to your app
+
+This is e.g. necessary if a translator has added translations in WTI before we've added the corresponding columns in our app (Auctionet).
+
+Then we'll need to do this after we've added those columns.
+
+It may also be necessary to do if Content Translator fails to sync translations for some reason – perhaps it runs into API throttling. (TODO: We should make it raise a clear error in this situation, or ideally not to trigger the error in the first place.)
+
+Please note that this command has a hard-coded Heroku project name, suitable for Auctionet. PRs welcome to soft-code that.
+
+Run this in dev:
+
+    mix run script/force_sync_from_wti.exs <the locale>
 
 ## Development
 
