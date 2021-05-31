@@ -146,6 +146,8 @@ Run this in dev:
 
     mix run script/force_sync_from_wti.exs <the locale>
 
+If you're getting throttled by Cloudflare when updating Auctionet, you may need to first allowlist your IP on Cloudflare, under Firewall > Tools.
+
 ## Development
 
     # Redis is required for tests/server to run. Start it with

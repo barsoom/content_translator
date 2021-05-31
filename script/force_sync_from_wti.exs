@@ -11,7 +11,7 @@ locale =
 {heroku_config, 0} = System.cmd("heroku", [ "config:get", "-a", "auctionet-content-translator", "WTI_PROJECT_TOKEN", "CLIENT_APP_WEBHOOK_URL" ])
 [wti_project_token, client_app_webhook_url] = String.split(heroku_config, "\n", trim: true)
 
-IO.inspect {wti_project_token, client_app_webhook_url}
+# Figure out max number of pages, in a simple but non-optimized way.
 
 response = HTTPotion.get "https://webtranslateit.com/api/projects/#{wti_project_token}/strings.json?locale=#{locale}"
 
@@ -22,6 +22,8 @@ last_page_number = String.to_integer(last_page_number)
 for page <- 1..last_page_number do
   IO.puts "Getting page #{page}…"
 
+  # Get translations from WTI.
+
   response = HTTPotion.get "https://webtranslateit.com/api/projects/#{wti_project_token}/strings.json?locale=#{locale}&page=#{page}"
   json = Poison.decode!(response.body)
 
@@ -30,12 +32,15 @@ for page <- 1..last_page_number do
      %{"key" => key, "translations" => nil} -> {key, ""}
   end) |> Enum.filter(fn {_, ""} -> false; _ -> true; end)
 
+  # Send to the client app.
+
   for {key, translation} <- keys_to_translations do
+    IO.puts "Updating #{key}…"
+
     body = "payload=#{URI.encode_www_form(JSON.encode(%{locale: locale, key: key, value: translation}))}"
-    HTTPotion.post client_app_webhook_url, [body: body]
+    %{status_code: 200} = HTTPotion.post client_app_webhook_url, [body: body]
 
     # Throttle a bit so we don't overload the client server.
-    IO.puts "Updating #{key}…"
-    Process.sleep(25)  # ms
+    Process.sleep(100)  # ms
   end
 end
