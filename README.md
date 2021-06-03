@@ -146,6 +146,12 @@ Run this in dev:
 
     mix run script/force_sync_from_wti.exs <the locale>
 
+To only re-sync a specific model:
+
+    mix run script/force_sync_from_wti.exs <the locale> <model key, e.g. "page_content">
+
+To re-sync every locale for a specific model, run that command once per locale (sorry).
+
 If you're getting throttled by Cloudflare when updating Auctionet, you may need to first allowlist your IP on Cloudflare, under Firewall > Tools.
 
 ## Development

@@ -1,10 +1,11 @@
 # This is a pretty hacky script! Feel free to improve it. E.g. run it in production instead so we can use ENVs directly etc.
 
-locale =
+[locale, model_key] =
   case System.argv() do
-    [ loc ] -> loc
+    [loc, mod] -> [loc, mod]
+    [loc] -> [loc, nil]
     _ ->
-      IO.warn "Please provide a single locale argument"
+      IO.warn "Please provide arguments"
       System.halt(1)
   end
 
@@ -37,12 +38,14 @@ for page <- 1..last_page_number do
   # Send to the client app.
 
   for {key, translation} <- keys_to_translations do
-    IO.puts "Updating #{key}…"
+    if !model_key || String.match?(key, ~r{\A#{Regex.escape(model_key)}_\d+:}) do
+      IO.puts "Updating #{key}…"
 
-    body = "payload=#{URI.encode_www_form(JSON.encode(%{locale: locale, key: key, value: translation}))}"
-    %{status_code: 200} = HTTPotion.post client_app_webhook_url, [body: body]
+      body = "payload=#{URI.encode_www_form(JSON.encode(%{locale: locale, key: key, value: translation}))}"
+      %{status_code: 200} = HTTPotion.post client_app_webhook_url, [body: body]
 
-    # Throttle a bit so we don't overload the client server.
-    Process.sleep(100)  # ms
+      # Throttle a bit so we don't overload the client server.
+      Process.sleep(100)  # ms
+    end
   end
 end
