@@ -13,6 +13,7 @@ locale =
 
 # Figure out max number of pages, in a simple but non-optimized way.
 
+# https://webtranslateit.com/en/docs/api/string
 response = HTTPotion.get "https://webtranslateit.com/api/projects/#{wti_project_token}/strings.json?locale=#{locale}"
 
 link_header = Keyword.fetch!(response.headers, :Link)
@@ -24,6 +25,7 @@ for page <- 1..last_page_number do
 
   # Get translations from WTI.
 
+  # https://webtranslateit.com/en/docs/api/string
   response = HTTPotion.get "https://webtranslateit.com/api/projects/#{wti_project_token}/strings.json?locale=#{locale}&page=#{page}"
   json = Poison.decode!(response.body)
 
