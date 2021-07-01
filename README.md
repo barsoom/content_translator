@@ -1,3 +1,5 @@
+ARCHIVED: Replaced by a worker and a webhook in Auctionet.
+
 **Status**: Used in production by Auctionet, though we decided in April 2021 to rewrite it. Tests don’t accurately reflect whether it works and it's using a job processor that is no longer maintained. Discussion (available to Auctionet only): <https://auctionet.slack.com/archives/CF9SAN79V/p1617694713026100>
 
 
